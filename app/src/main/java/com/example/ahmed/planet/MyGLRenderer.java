@@ -59,9 +59,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private World world = null;
     private RGBColor back = new RGBColor(50, 50, 100);
 
-    private float mAngleX;
-    private float mAngleY;
-
     private Object3D space = null;
     private CamerObj cam = null;
     private int fps = 0;
@@ -102,12 +99,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             sun.setPosition(SimpleVector.create(0, 0, 200));
 
             world.setAmbientLight(30, 30, 30);
-
-
-
-
             TextureManager.getInstance().addTexture("skyline", new Texture(BitmapHelper.rescale(BitmapHelper.convert(myContext.getResources().getDrawable(R.drawable.skyline)), 512, 512)));
-
 
             try{
                 space = Object3D.mergeAll(Loader.load3DS(myContext.getResources().getAssets().open("planet.3ds"), 10));
@@ -117,33 +109,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 space.strip();
                 space.setAdditionalColor(150,150,150);
                 space.build();
-
-
             }catch (IOException e){
 
             }
             world.addObject(space);
 
-            /*world = new World();
-            world.setAmbientLight(20, 20, 20);
-
-            sun = new Light(world);
-            sun.setIntensity(250, 250, 250);
-            */
-            // Create a texture out of the icon...:-)
-           // Texture texture = new Texture(BitmapHelper.rescale(BitmapHelper.convert(getResources().getDrawable(R.drawable.icon)), 64, 64));
-            //TextureManager.getInstance().addTexture("texture", texture);
-
-            //planet = new PlanetObj(myContext, world, "earth");
             planets.add(new Planet(myContext.getApplicationContext(), "sun2",100f));
             planets.get(0).addColor(255, 255, 255);
             planets.get(0).getPlanetObj().setLighting(1);
             world.addObject(planets.get(0).getPlanetObj());
-
-
-
-
-
 
             planets.add(new Planet(myContext.getApplicationContext(), "earth",10f));
             planets.get(1).getPlanetObj().translate(0,0,-200);
@@ -152,7 +126,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
             hemispheres.add(new Hemisphere(myContext.getApplicationContext(), "earth",10.05f, 6));
             hemispheres.get(0).getPlanetObj().translate(0,0,-200);
-            //   hemispheres.get(0).getPlanetObj().setAdditionalColor(127,127,0);
 
             world.addObject(hemispheres.get(0).getPlanetObj());
 
@@ -164,67 +137,22 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             shader.setStaticUniform("colorMap", 0);
             shader.setStaticUniform("normalMap", 0);
             shader.setStaticUniform("invRadius", 10.0005f);
-            //planet.addColor(255, 255, 255);
-            //planet.getPlanetObj().setLighting(1);
-
-
-            //cube = Primitives.getCube(10);
-            //cube.calcTextureWrapSpherical();
-            //cube.setTexture("texture");
-            //cube.strip();
-            //cube.build();
-
-            //world.addObject(planet);
-
-
-            //world.addObject(planet.getPlanetObj());
             cam = new CamerObj(world);
             SimpleVector sv = new SimpleVector();
-            //sv.set(planet.getTransformedCenter());
             sv.y = 100;
             sv.z -= 100;
-
-
-            //Camera cam = world.getCamera();
-            //cam.moveCamera(Camera.CAMERA_MOVEOUT, 150);
-            //cam.lookAt(planet.getTransformedCenter());
-
-            //SimpleVector sv = new SimpleVector();
-            //sv.set(cube.getTransformedCenter());
-            //sv.y -= 100;
-            //sv.z -= 100;
-            //sun.setPosition(sv);
-
             MemoryHelper.compact();
-
-            /*if (master == null) {
-                Logger.log("Saving master Activity!");
-                master = HelloWorld.this;
-            }*/
             master = true;
         }
     }
     @Override
     public void onDrawFrame(GL10 gl) {
-        /*if (mAngleX != 0) {
-            //cube.rotateY(mAngleX);
-            mAngleX = 0;
-        }
-
-        if (mAngleY != 0) {
-            //cube.rotateX(mAngleY);
-            mAngleY = 0;
-        }*/
-
-
         CamerObj.onRendering(touchPoint.x, touchPoint.y);
-        //Logger.log("Touchpointer  "+touchPoint);
         CamerObj.focusonPlanet(planets.get(1).getPlanetObj());
         CamerObj.setRotateCenter((planets.get(1).getPlanetObj().getTransformedCenter()));
 
         rotate = rotate -0.000005f;
         planets.get(1).getPlanetObj().rotateY(rotate);
-        //Logger.log("planet");
         fb.clear(back);
         world.renderScene(fb);
         world.draw(fb);
@@ -238,23 +166,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         fps++;
     }
+
     /**
-     * Returns the rotation angle of the triangle shape (mTriangle).
+     * Returns the touchpoint from the Camera.
      *
-     * @return - A float representing the rotation angle.
+     * @return - A PointF with the Coordinates.
      */
-    public float getAngleX() { return mAngleX; }
-    public float getAngleY() { return mAngleY; }
     public PointF getTouchPoint(){ return touchPoint; }
 
     /**
-     * Sets the rotation angle of the triangle shape (mTriangle).
+     * Sets the touchpoint for the Camera.
      */
-    public void setAngleX(float angle) {
-        mAngleX = angle;
-    }
-    public void setAngleY(float angle) {
-        mAngleY = angle;
-    }
     public void setTouchPoint(PointF point){ touchPoint = point; }
 }
