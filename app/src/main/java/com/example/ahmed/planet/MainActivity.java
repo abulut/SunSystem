@@ -1,8 +1,14 @@
 package com.example.ahmed.planet;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import com.threed.jpct.Logger;
 
@@ -10,6 +16,7 @@ import java.lang.reflect.Field;
 
 
 public class MainActivity extends ActionBarActivity {
+    SpinnerActivity spinnerActivity = new SpinnerActivity();
     private GLSurfaceView mGLView;
     private static MainActivity master = null;
     @Override
@@ -20,7 +27,19 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         Logger.log("TEST");
         mGLView = new MyGLSurfaceView(this);
-        setContentView(mGLView);
+
+        RelativeLayout rl = new RelativeLayout(this);
+        rl.addView(mGLView);
+
+        LayoutInflater uiInflater = LayoutInflater.from(this);
+        View uiView = uiInflater.inflate(R.layout.activity_main, null, false);
+
+        rl.addView(uiView);
+
+        setContentView(rl);
+
+        Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
+        spinner.setOnItemSelectedListener(spinnerActivity);
     }
 
 
@@ -54,5 +73,23 @@ public class MainActivity extends ActionBarActivity {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void planetInfoFragment (View view) {
+        FragmentManager FM = getFragmentManager();
+        FragmentTransaction FT = FM.beginTransaction();
+        DisplayInfoFragment DIF = (DisplayInfoFragment) FM.findFragmentByTag("dif");
+        if (DIF == null) {
+
+            String planet = spinnerActivity.spinnerPosition.toString();
+            DIF = new DisplayInfoFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("planet", planet);
+            DIF.setArguments(bundle);
+            FT.add(R.id.frInfo_id, DIF, "dif");
+        } else {
+            FT.remove(DIF);
+        }
+        FT.commit();
     }
 }

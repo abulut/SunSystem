@@ -3,4 +3,111 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="planets_array">
+        <item>Merkur</item>
+        <item>Venus</item>
+        <item>Erde</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptun</item>
+    </string-array>
+
+    <string-array name="Merkur_info">
+        <item>Name: Merkur</item>
+        <item>Äquator: 4.879,4 km</item>
+        <item>Masse: 3,301*10^23 kg</item>
+        <item>Mittlere Dichte: 5,427 g/cm^3</item>
+        <item>Fallbeschleunigung: 3,70 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 4,3 km/s</item>
+        <item>Rotationsperiode: 58d 15h 36min</item>
+        <item>Neigung der Rotationsachse: 0,01°</item>
+        <item>Geometrische Albedo: 0,106</item>
+        <item>Max. scheinbare Helligkeit: -1,9^m</item>
+    </string-array>
+    <string-array name="Venus_info">
+        <item>Name: Venus</item>
+        <item>Äquator: 12.103,6 km</item>
+        <item>Masse: 4,869*10^24 kg</item>
+        <item>Mittlere Dichte: 5,243 g/cm^3</item>
+        <item>Fallbeschleunigung: 8,87 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 10,36 km/s</item>
+        <item>Rotationsperiode: 243d 0h 36min</item>
+        <item>Neigung der Rotationsachse: 177,36°</item>
+        <item>Geometrische Albedo: 0,65</item>
+        <item>Max. scheinbare Helligkeit: -4,6^m</item>
+    </string-array>
+    <string-array name="Erde_info">
+        <item>Name: Erde</item>
+        <item>Äquator: 12.756,32 km</item>
+        <item>Masse: 5,974*10^24 kg</item>
+        <item>Mittlere Dichte: 5,515 g/cm^3</item>
+        <item>Fallbeschleunigung: 9,80665 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 11,186 km/s</item>
+        <item>Rotationsperiode: 23h 56min 4,1s</item>
+        <item>Neigung der Rotationsachse: 23,44°</item>
+        <item>Geometrische Albedo: 0,367</item>
+    </string-array>
+    <string-array name="Mars_info">
+        <item>Name: Mars</item>
+        <item>Äquator: 6.792,4 km</item>
+        <item>Masse: 6,419*10^23 kg</item>
+        <item>Mittlere Dichte: 3,933 g/cm^3</item>
+        <item>Fallbeschleunigung: 3,69 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 5,03 km/s</item>
+        <item>Rotationsperiode: 24h 37min 22s</item>
+        <item>Neigung der Rotationsachse: 25,19°</item>
+        <item>Geometrische Albedo: 0,15</item>
+        <item>Max. scheinbare Helligkeit: -2,91^m</item>
+    </string-array>
+    <string-array name="Jupiter_info">
+        <item>Name: Jupiter</item>
+        <item>Äquator: 142.984 km</item>
+        <item>Masse: 1,899*10^27 kg</item>
+        <item>Mittlere Dichte: 1,326 g/cm^3</item>
+        <item>Fallbeschleunigung: 24,79 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 59,54 km/s</item>
+        <item>Rotationsperiode: 9h 55min 30s</item>
+        <item>Neigung der Rotationsachse: 3,13°</item>
+        <item>Geometrische Albedo: 0,52</item>
+        <item>Max. scheinbare Helligkeit: -2,94^m</item>
+    </string-array>
+    <string-array name="Saturn_info">
+        <item>Name: Saturn</item>
+        <item>Äquator: 120.536 km</item>
+        <item>Masse: 5,685*10^26 kg</item>
+        <item>Mittlere Dichte: 0,687 g/cm^3</item>
+        <item>Fallbeschleunigung: 10,44 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 35,5 km/s</item>
+        <item>Rotationsperiode: 10h 33min</item>
+        <item>Neigung der Rotationsachse: 26,73°</item>
+        <item>Geometrische Albedo: 0,47</item>
+        <item>Max. scheinbare Helligkeit: -0,2^m</item>
+    </string-array>
+    <string-array name="Uranus_info">
+        <item>Name: Uranus</item>
+        <item>Äquator: 51.118 km</item>
+        <item>Masse: 8,683*10^25 kg</item>
+        <item>Mittlere Dichte: 1,27 g/cm^3</item>
+        <item>Fallbeschleunigung: 8,87 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 21,3 km/s</item>
+        <item>Rotationsperiode: 17h 14min 24</item>
+        <item>Neigung der Rotationsachse: 97,77°</item>
+        <item>Geometrische Albedo: 0,51</item>
+        <item>Max. scheinbare Helligkeit: +5,6^m</item>
+    </string-array>
+    <string-array name="Neptun_info">
+        <item>Name: Neptun</item>
+        <item>Äquator: 49.528 km</item>
+        <item>Masse: 1,0243*10^26 kg</item>
+        <item>Mittlere Dichte: 1,638 g/cm^3</item>
+        <item>Fallbeschleunigung: 11,15 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 23,5 km/s</item>
+        <item>Rotationsperiode: 15h 57min 59s</item>
+        <item>Neigung der Rotationsachse: 28,32°</item>
+        <item>Geometrische Albedo: 0,41</item>
+        <item>Max. scheinbare Helligkeit: +7,8^m</item>
+    </string-array>
 </resources>
