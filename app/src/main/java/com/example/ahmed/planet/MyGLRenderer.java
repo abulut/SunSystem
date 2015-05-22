@@ -99,7 +99,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             sun.setPosition(SimpleVector.create(0, 0, 200));
 
             world.setAmbientLight(30, 30, 30);
-            TextureManager.getInstance().addTexture("skyline", new Texture(BitmapHelper.rescale(BitmapHelper.convert(myContext.getResources().getDrawable(R.drawable.skyline)), 512, 512)));
+
+            //if(TextureManager.getInstance() == null){
+                TextureManager.getInstance().addTexture("skyline", new Texture(BitmapHelper.rescale(BitmapHelper.convert(myContext.getResources().getDrawable(R.drawable.skyline)), 512, 512)));
+            //}
+
 
             try{
                 space = Object3D.mergeAll(Loader.load3DS(myContext.getResources().getAssets().open("planet.3ds"), 10));

@@ -20,8 +20,6 @@ import android.graphics.PointF;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import com.threed.jpct.Logger;
-
 /**
  * A view container where OpenGL ES graphics can be drawn on screen.
  * This view can also be used to capture touch events, such as a user
@@ -59,7 +57,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
             case MotionEvent.ACTION_MOVE: {
                 touchPoint = InputTouchHandler.actionMove(me);
                 mRenderer.setTouchPoint(touchPoint);
-                Logger.log("Touchpointer on Surface  " + touchPoint);
+                //Logger.log("Touchpointer on Surface  " + touchPoint);
                 break;
             }
 
