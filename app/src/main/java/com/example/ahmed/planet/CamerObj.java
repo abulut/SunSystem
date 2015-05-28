@@ -29,7 +29,7 @@ public class CamerObj {
 
         xAxis = 0;
         yAxis = 0;
-        distance = 30;
+        distance = 5;
         cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
 
 
@@ -51,20 +51,14 @@ public class CamerObj {
             yAxis = -30;
         }
 
+            rotateVec.x = (distance * -(float) Math.sin(xAxis * ((float) Math.PI / 180)) * (float) Math.cos((yAxis) * ((float) Math.PI / 180))) + rotateCenter.x;
+            rotateVec.y = (distance * -(float) Math.sin((yAxis) * ((float) Math.PI / 180))) + rotateCenter.y;
+            rotateVec.z = (-distance * (float) Math.cos((xAxis) * ((float) Math.PI / 180)) * (float) Math.cos((yAxis) * ((float) Math.PI / 180))) + rotateCenter.z;
 
-            rotateVec.x =(distance * -FloatMath.sin(xAxis * ((float) Math.PI / 180)) * FloatMath.cos((yAxis) * ((float) Math.PI / 180)))+rotateCenter.x;
-            rotateVec.y =(distance * -FloatMath.sin((yAxis) * ((float) Math.PI / 180)))+rotateCenter.y;
-            rotateVec.z =(-distance * FloatMath.cos((xAxis) * ((float) Math.PI / 180)) * FloatMath.cos((yAxis) * ((float) Math.PI / 180)))+rotateCenter.z;
+
             cam.setPosition(rotateVec.x, rotateVec.y, rotateVec.z);
 
 
-   /*     rotateVec.set(-x, 0, 0);
-        m = rotateVec.normalize(rotateVec).getRotationMatrix(m);
-        m.rotateAxis(m.getXAxis(), (float) -Math.PI / 2f);
-        cam.moveCamera(Camera.CAMERA_MOVEIN, 50); // 50 is the distance from the cube's center that the camera has
-        cam.rotateCameraAxis(m.invert3x3().getXAxis(), -rotateVec.length() / 15f); // 5f actually depends on render speed
-        cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
-    */
     }
 
 
@@ -76,5 +70,9 @@ public class CamerObj {
     }
 
     public static SimpleVector getCamPos(){return rotateVec;}
+
+    public static void setCameraDistance(float newDistance){
+        distance = newDistance;
+    }
 
 }

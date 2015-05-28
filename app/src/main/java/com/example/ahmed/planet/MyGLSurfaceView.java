@@ -29,6 +29,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
     private final MyGLRenderer mRenderer;
     private InputTouchHandler intouchHandle = null;
     private PointF touchPoint = null;
+    private float camDistance;
+
 
     public MyGLSurfaceView(Context context) {
         super(context);
@@ -44,11 +46,12 @@ public class MyGLSurfaceView extends GLSurfaceView {
         int maskedAction = me.getActionMasked();
         switch (maskedAction) {
 
+            // First TouchPoint
             case MotionEvent.ACTION_DOWN:{
                 InputTouchHandler.actionDown(me);
                 break;
             }
-
+            //Second TouchPointer
             case MotionEvent.ACTION_POINTER_DOWN: {
                 InputTouchHandler.actionPointerDown(me, pointerIndex);
                 break;
@@ -56,7 +59,9 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
             case MotionEvent.ACTION_MOVE: {
                 touchPoint = InputTouchHandler.actionMove(me);
+                camDistance = InputTouchHandler.getCameraDistance();
                 mRenderer.setTouchPoint(touchPoint);
+                mRenderer.setCameraDistance(camDistance);
                 //Logger.log("Touchpointer on Surface  " + touchPoint);
                 break;
             }
