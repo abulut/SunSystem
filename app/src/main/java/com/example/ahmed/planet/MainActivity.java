@@ -14,13 +14,21 @@ import com.threed.jpct.Logger;
 
 import java.lang.reflect.Field;
 
+import UserInterfaceInteraction.DisplayInfoFragment;
+import UserInterfaceInteraction.SpinnerListener;
+
 
 public class MainActivity extends ActionBarActivity {
-    SpinnerActivity spinnerActivity = new SpinnerActivity();
+
+
+    private SpinnerListener spinnerListener;
     private GLSurfaceView mGLView;
     private static MainActivity master = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        spinnerListener = new SpinnerListener(this);
+
         if (master != null) {
             copy(master);
         }
@@ -39,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(rl);
 
         Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
-        spinner.setOnItemSelectedListener(spinnerActivity);
+        spinner.setOnItemSelectedListener(spinnerListener);
     }
 
 
@@ -81,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
         DisplayInfoFragment DIF = (DisplayInfoFragment) FM.findFragmentByTag("dif");
         if (DIF == null) {
 
-            String planet = spinnerActivity.spinnerPosition.toString();
+            String planet = spinnerListener.getSpinnerPosition().toString();
             DIF = new DisplayInfoFragment();
             Bundle bundle = new Bundle();
             bundle.putString("planet", planet);

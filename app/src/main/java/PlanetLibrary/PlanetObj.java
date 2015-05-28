@@ -93,7 +93,7 @@ public class PlanetObj extends Object3D {
 
 
     public static void loadTexture(String pt,String en, String et){
-        TextureManager.getInstance().addTexture(pt + en, new Texture(BitmapHelper.rescale(BitmapHelper.convert(ctx.getResources().getDrawable(ctx.getResources().getIdentifier(pt + et, "drawable", ctx.getPackageName()), ctx.getTheme())), 512, 512), true));
+        TextureManager.getInstance().addTexture(pt + en, new Texture(BitmapHelper.rescale(BitmapHelper.convert(ctx.getResources().getDrawable(ctx.getResources().getIdentifier(pt + et, "drawable", ctx.getPackageName()))), 512, 512), true));
     }
 
 
