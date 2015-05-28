@@ -90,7 +90,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             fb.dispose();
         }
         fb = new FrameBuffer(gl, width, height);
-
+        Logger.log("Master ------------------------------------------------------------------- "+master);
         if (master == false) {
 
             String vertex=Loader.loadTextFile(myContext.getResources().openRawResource(R.raw.vertexshader_offset));
