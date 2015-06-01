@@ -71,14 +71,22 @@ public class InputTouchHandler {
 
             float distancDelta = (calcDistance(touchPointList.get(0).x , touchPointList.get(0).y , touchPointList.get(1).x , touchPointList.get(1).y) - tempDistanc)/100;
 
-            if(distance <= MAX_ZOOM && distance >= MIN_ZOOM ){
+            if(distancDelta < 0 && distance <= MAX_ZOOM){
+                //wird kleiner Zoom Out
+                distance = Math.max(distance - distancDelta,MIN_ZOOM);
+            }else if(distancDelta > 0 && distance >= MIN_ZOOM ){
+                // wird größer Zoom In
+                distance = Math.min(distance - distancDelta,MAX_ZOOM);
+            }
+/*
+            if(distance < MAX_ZOOM && distance > MIN_ZOOM ){
                 distance -= distancDelta;
-            }else if(distance > MAX_ZOOM){
+            }else if(distance >= MAX_ZOOM){
                 distance = MAX_ZOOM;
-            }else if(distance < MIN_ZOOM){
+            }else if(distance <= MIN_ZOOM){
                 distance = MIN_ZOOM;
             }
-
+*/
             return new PointF(0,0);
 
 
