@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import PlanetLibrary.PlanetManager;
 import PlanetLibrary.PlanetObj;
 
 /**
@@ -56,7 +57,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private boolean master = false;
     private FrameBuffer fb = null;
     private World world = null;
-    private RGBColor back = new RGBColor(50, 50, 100);
+    private RGBColor back = new RGBColor(255, 255, 255);
 
     private float mAngleX;
     private float mAngleY;
@@ -72,7 +73,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private GLSLShader shader = null;
 
     private ArrayList<PlanetObj> planets = new ArrayList<>();
-
+    private PlanetManager pm;
 
     private float rotate= 0.0f;
 
@@ -90,6 +91,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             fb.dispose();
         }
         fb = new FrameBuffer(gl, width, height);
+
+
         Logger.log("Master ------------------------------------------------------------------- "+master);
         if (master == false) {
 
@@ -120,14 +123,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
 
-            TextureManager.getInstance().addTexture("skyline", new Texture(BitmapHelper.rescale(BitmapHelper.convert(myContext.getResources().getDrawable(R.drawable.skyline)), 512, 512)));
+            TextureManager.getInstance().addTexture("skyline", new Texture(BitmapHelper.rescale(BitmapHelper.convert(myContext.getResources().getDrawable(R.drawable.skyline)), 1024, 1024)));
 
 
             try{
-                space = Object3D.mergeAll(Loader.load3DS(myContext.getResources().getAssets().open("planet.3ds"), 4000000));
+                space = Object3D.mergeAll(Loader.load3DS(myContext.getResources().getAssets().open("planet.3ds"), 400000));
                 space.setTexture("skyline");
+                space.invert();
                 space.rotateX(-(float) Math.PI / 2);
-                space.setCulling(false);
+ //               space.setCulling(false);
+
                 space.strip();
                 space.setAdditionalColor(150,150,150);
                 space.build();
@@ -138,6 +143,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             }
             world.addObject(space);
             //1:4 KM
+
+            pm = new PlanetManager(myContext, world);
+/*
             planets.add(0, new PlanetObj(myContext.getApplicationContext(), "sun", 1391f));
             planets.get(0).getPlanetObj().setAdditionalColor(255, 255, 255);
             planets.get(0).getPlanetObj().setLighting(0);
@@ -147,13 +155,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
             planets.add(1, new PlanetObj(myContext.getApplicationContext(), "earth", 12.734f));
-            planets.get(1).moveObj(0,0,-150000);
+            planets.get(1).moveObj(0, 0, -150000);
             planets.get(1).getPlanetObj().setAdditionalColor(76, 76, 76);
             world.addObject(planets.get(1).getPlanetObj());
             planets.get(1).addHemi(world, 6);
 
 
-
+*/
 
             cam = new CamerObj(world);
             SimpleVector sv = new SimpleVector();
@@ -169,6 +177,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 master = HelloWorld.this;
             }*/
             master = true;
+
+            CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(3));
+
         }
     }
     @Override
@@ -177,14 +188,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         CamerObj.setCameraDistance(camDistance);
         CamerObj.onRendering(touchPoint.x, touchPoint.y);
         //Logger.log("Touchpointer  "+touchPoint);
-        CamerObj.focusonPlanet(planets.get(0).getPlanetObj());
-        CamerObj.setRotateCenter((planets.get(0).getPlanetObj().getTransformedCenter()));
+
+        CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(3));
 
 
 
-
-        rotate = rotate -0.000005f;
-        planets.get(1).getPlanetObj().rotateY(rotate);
+   //     rotate = rotate -0.000005f;
+  //      planets.get(1).getPlanetObj().rotateY(rotate);
 
 
         fb.clear(back);

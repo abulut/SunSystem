@@ -24,7 +24,9 @@ public class PlanetObj extends Object3D {
     private static Object3D planet = null;
     private static Object3D hemisphere = null;
     private static float size;
+    private static String name;
     private SimpleVector realpos = new SimpleVector();
+
     public PlanetObj(Context ctx, String planetTexture, float size){
 
         super(planet);
@@ -32,6 +34,7 @@ public class PlanetObj extends Object3D {
         this.planetTexture = planetTexture;
         this.ctx = ctx;
         this.size = size;
+        this.name = planetTexture;
         loadTexture(planetTexture,"","");
         loadTexture(planetTexture,"N","n");
 
@@ -39,13 +42,14 @@ public class PlanetObj extends Object3D {
         ti.add(TextureManager.getInstance().getTextureID(planetTexture + "N"), TextureInfo.MODE_MODULATE);
 
         try{
-            planet = Object3D.mergeAll(Loader.load3DS(ctx.getResources().getAssets().open("planet2.3ds"), this.size));
+
+            planet = Object3D.mergeAll(Loader.load3DS(ctx.getResources().getAssets().open("planet.3ds"), this.size));
             planet.setScale(1);
             planet.rotateX(-(float) Math.PI / 2);
             planet.setCulling(true);
 
             planet.setTexture(ti);
-            planet.setSpecularLighting(false);
+
 
             planet.setSpecularLighting(true);
             planet.compile();
@@ -70,7 +74,7 @@ public class PlanetObj extends Object3D {
         ti.add(TextureManager.getInstance().getTextureID(planetTexture + "HN"), TextureInfo.MODE_MODULATE);
 
         try{
-            hemisphere = Object3D.mergeAll(Loader.load3DS(ctx.getResources().getAssets().open("planet2.3ds"), this.size+0.05f));
+            hemisphere = Object3D.mergeAll(Loader.load3DS(ctx.getResources().getAssets().open("planet.3ds"), this.size+0.05f));
             hemisphere.setScale(1);
             hemisphere.rotateX(-(float) Math.PI / 2);
             hemisphere.setCulling(true);
@@ -102,9 +106,11 @@ public class PlanetObj extends Object3D {
         realpos = new SimpleVector(x,y,z);
     }
 
-
+    public String getPlanetName(){
+        return this.name;
+    }
     public Object3D getPlanetObj(){
-        return planet;
+        return this.planet;
     }
     public Object3D getHemiObj(){
         return hemisphere;

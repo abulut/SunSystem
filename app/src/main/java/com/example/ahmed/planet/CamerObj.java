@@ -62,8 +62,8 @@ public class CamerObj {
     }
 
 
-    public static void setRotateCenter(SimpleVector newRotateCenter){
-        rotateCenter = newRotateCenter;
+    public static void setRotateCenter(Object3D newRotateCenter){
+        rotateCenter = newRotateCenter.getTransformedCenter();
     }
     public static void focusonPlanet(Object3D planet){
         cam.lookAt(planet.getTransformedCenter());
