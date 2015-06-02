@@ -20,37 +20,37 @@ import UserInterfaceInteraction.SpinnerListener;
 
 public class MainActivity extends ActionBarActivity {
 
-
     private SpinnerListener spinnerListener;
     private GLSurfaceView mGLView;
     private static MainActivity master = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        spinnerListener = new SpinnerListener(this);
-
-        if (master != null) {
-            copy(master);
-        }
         super.onCreate(savedInstanceState);
-        Logger.log("TEST");
-        mGLView = new MyGLSurfaceView(this);
+        if(savedInstanceState == null){
+            spinnerListener = new SpinnerListener(this);
+            Logger.log(master +"master");
+            if(master != null){
+                copy(master);
+            }
 
-        RelativeLayout rl = new RelativeLayout(this);
-        rl.addView(mGLView);
+            Logger.log("TEST");
+            mGLView = new MyGLSurfaceView(this);
 
-        LayoutInflater uiInflater = LayoutInflater.from(this);
-        View uiView = uiInflater.inflate(R.layout.activity_main, null, false);
+            RelativeLayout rl = new RelativeLayout(this);
+            rl.addView(mGLView);
 
-        rl.addView(uiView);
+            LayoutInflater uiInflater = LayoutInflater.from(this);
+            View uiView = uiInflater.inflate(R.layout.activity_main, null, false);
 
-        setContentView(rl);
+            rl.addView(uiView);
 
-        Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
-        spinner.setOnItemSelectedListener(spinnerListener);
+            setContentView(rl);
+
+            Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
+            spinner.setOnItemSelectedListener(spinnerListener);
+        }
     }
-
-
 
     @Override
     protected void onPause() {
@@ -60,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
         // consume significant memory here.
         super.onPause();
         mGLView.onPause();
+        Logger.log("OnPause");
     }
 
     @Override
@@ -69,7 +70,32 @@ public class MainActivity extends ActionBarActivity {
         // this is a good place to re-allocate them.
         super.onResume();
         mGLView.onResume();
+        Logger.log("OnResume");
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        //mGLView.onResume();
+        Logger.log("OnStart");
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onDestroy();
+        //mGLView.onResume();
+        super.onBackPressed();
+        finish();
+        System.exit(0);
+        Logger.log("OnBackPressed");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Logger.log("OnStop");
+    }
+
     private void copy(Object src) {
         try {
             Logger.log("Copying data from master Activity!");

@@ -8,7 +8,6 @@ import android.os.Bundle;
  * Created by Ahmed on 20.05.2015.
  */
 public class SplashActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +30,21 @@ public class SplashActivity extends Activity {
         };
         logoTimer.start();
     }
+    /*
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        // The following call resumes a paused rendering thread.
+        // If you de-allocated graphic objects for onPause()
+        // this is a good place to re-allocate them.
+        super.onResume();
+        Logger.log("OnResume");
+    }
+    */
 }
 

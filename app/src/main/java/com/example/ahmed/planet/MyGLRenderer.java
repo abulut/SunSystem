@@ -210,24 +210,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         fps++;
     }
-    /**
-     * Returns the rotation angle of the triangle shape (mTriangle).
-     *
-     * @return - A float representing the rotation angle.
-     */
-    public float getAngleX() { return mAngleX; }
-    public float getAngleY() { return mAngleY; }
-    public PointF getTouchPoint(){ return touchPoint; }
 
+    public boolean getMaster(){
+        return master;
+    }
     /**
-     * Sets the rotation angle of the triangle shape (mTriangle).
+     * Sets the Touchpoint from camera for the Rotation .
      */
-    public void setAngleX(float angle) {
-        mAngleX = angle;
-    }
-    public void setAngleY(float angle) {
-        mAngleY = angle;
-    }
     public void setTouchPoint(PointF point){ touchPoint = point; }
     public void setCameraDistance(float d){camDistance = d;}
 }

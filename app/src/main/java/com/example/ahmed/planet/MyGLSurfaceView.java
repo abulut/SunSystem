@@ -30,6 +30,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
     private InputTouchHandler intouchHandle = null;
     private PointF touchPoint = null;
     private float camDistance;
+    private boolean master = false;
 
 
     public MyGLSurfaceView(Context context) {
@@ -84,6 +85,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         }
         return true;
     }
+
 
     protected boolean isFullscreenOpaque() {
         return true;
