@@ -1,0 +1,85 @@
+{
+  "Planets":[
+    {
+      "name":"sun",
+      "posx": "0",
+      "posy": "0",
+      "posz": "0",
+      "diameter": "13.91",
+      "hemi":"false",
+      "addColor":"255"
+    },
+    {
+      "name":"mercur",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-58",
+      "diameter": "4.879",
+      "hemi":"false",
+      "addColor":"76"
+    },
+    {
+      "name":"venus",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-108",
+      "diameter": "12.103",
+      "hemi":"false",
+      "addColor":"76"
+    },
+    {
+      "name":"earth",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-150",
+      "diameter": "12.734",
+      "hemi":"true",
+      "addColor":"76"
+    },
+    {
+      "name":"mars",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-228",
+      "diameter": "6.772",
+      "hemi":"false",
+      "addColor":"76"
+    },
+    {
+      "name":"jupiter",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-778",
+      "diameter": "138.346",
+      "hemi":"false",
+      "addColor":"76"
+    },
+    {
+      "name":"saturn",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-1433",
+      "diameter": "114.632",
+      "hemi":"false",
+      "addColor":"76"
+    },
+    {
+      "name":"uranus",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-2872",
+      "diameter": "50.532",
+      "hemi":"false",
+      "addColor":"76"
+    },
+    {
+      "name":"neptune",
+      "posx": "0",
+      "posy": "0",
+      "posz": "-4495",
+      "diameter": "49.105",
+      "hemi":"false",
+      "addColor":"255"
+    }
+  ]
+}
