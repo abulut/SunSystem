@@ -4,13 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:background="#E7E7E7"
+    <ListView
+        android:background="@drawable/roundcorners"
+        android:alpha="0.70"
+        android:id="@+id/infoFragmentListview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/infoFragmentTextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+        android:layout_height="match_parent" />
 </LinearLayout>

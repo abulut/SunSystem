@@ -9,30 +9,31 @@
     tools:context=".MainActivity">
         <Spinner
             android:id="@+id/planet_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
             android:entries="@array/planets_array"
-            android:background="#E7E7E7"
+            android:background="@drawable/roundcorners"
+            android:alpha="0.70"
             />
         <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Info"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:drawableStart="@drawable/info_icon"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:id="@+id/bInfo"
+            android:background="@drawable/info_button"
             android:onClick="planetInfoFragment"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
         <RelativeLayout
             android:id="@+id/frInfo_id"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_toLeftOf="@+id/bInfo"
-            android:layout_toStartOf="@+id/bInfo">
+            android:layout_alignParentStart="true">
         </RelativeLayout>
 
 </RelativeLayout>

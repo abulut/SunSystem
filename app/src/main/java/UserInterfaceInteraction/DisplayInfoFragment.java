@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.ahmed.planet.R;
 
@@ -25,17 +26,10 @@ public class DisplayInfoFragment extends Fragment {
             int infoID = getResources().getIdentifier(planet + "_info", "array", getActivity().getApplicationContext().getApplicationInfo().packageName);
 
             String[] planetData = getResources().getStringArray(infoID);
-            TextView textView = (TextView) v.findViewById(R.id.infoFragmentTextview);
+            ListView listView = (ListView) v.findViewById(R.id.infoFragmentListview);
 
-            StringBuilder builder = new StringBuilder();
-            for (String s : planetData) {
-                builder.append(s);
-                builder.append("\n");
-            }
-
-
-            textView.setTextSize(20);
-            textView.setText(builder.toString().trim());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.info_item, planetData);
+            listView.setAdapter(adapter);
         }
 
         return v;
