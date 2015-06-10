@@ -56,6 +56,7 @@ public class SplashActivity extends Activity{
             return null;
         }
 
+        //Als drittes
         @Override
         protected void onProgressUpdate(Integer... arg0){
 
