@@ -23,11 +23,15 @@ public class MainActivity extends ActionBarActivity {
     private SpinnerListener spinnerListener;
     private GLSurfaceView mGLView;
     private static MainActivity master = null;
+    private BackgroundSplashTask asyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null){
+            asyncTask = new BackgroundSplashTask(this);
+            asyncTask.execute();
+
             spinnerListener = new SpinnerListener(this);
             Logger.log(master +"master");
             if(master != null){
