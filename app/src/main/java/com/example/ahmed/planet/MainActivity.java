@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null){
+
             asyncTask = new BackgroundSplashTask(this);
             asyncTask.execute();
 
