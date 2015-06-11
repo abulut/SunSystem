@@ -1,39 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
-        <Spinner
-            android:id="@+id/planet_spinner"
-            android:layout_width="85dp"
-            android:layout_height="35dp"
-            android:entries="@array/planets_array"
-            android:background="@drawable/roundcorners"
-            android:alpha="0.70"
-            />
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:drawableStart="@drawable/info_icon"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/bInfo"
-            android:background="@drawable/info_button"
-            android:onClick="planetInfoFragment"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
-        <RelativeLayout
-            android:id="@+id/frInfo_id"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/bInfo"
-            android:layout_alignParentStart="true">
-        </RelativeLayout>
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
+            <Spinner
+                android:id="@+id/planet_spinner"
+                android:layout_width="85dp"
+                android:layout_height="35dp"
+                android:entries="@array/planets_array"
+                android:background="@drawable/roundcorners"
+                android:alpha="0.70"
+                />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:drawableStart="@drawable/info_icon"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:id="@+id/bInfo"
+                android:background="@drawable/info_button"
+                android:onClick="planetInfoFragment"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+            <RelativeLayout
+                android:id="@+id/frInfo_id"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/bInfo"
+                android:layout_alignParentStart="true">
+            </RelativeLayout>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/splashView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="bottom|center"
+        android:text="Sun System 3D"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+
+        android:textStyle="bold"
+        android:layout_weight="0.42"
+        android:textSize="30dp" />
+
+
+</FrameLayout>

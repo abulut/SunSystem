@@ -31,6 +31,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null){
 
+//          TExtView anzeigen: "Willkommen / Lade..."
+//          Textview evtl. mittels FrameLayout in activity-Layout integrieren
+
+//          asyncTask = new BackgroundSplashTask(this);
+//          asyncTask.execute();
             asyncTask = new BackgroundSplashTask(this);
             asyncTask.execute();
 
@@ -55,6 +60,10 @@ public class MainActivity extends ActionBarActivity {
 
             Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
             spinner.setOnItemSelectedListener(spinnerListener);
+
+//          Textview auf unsichtbar
+//          TextView splashView = (TextView) findViewById(R.id.splashView);
+//          splashView.setVisibility(View.GONE);
         }
     }
 
