@@ -41,6 +41,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import PlanetLibrary.PlanetManager;
 import PlanetLibrary.PlanetObj;
+import UserInterfaceInteraction.SpinnerListener;
 
 /**
  * Provides drawing instructions for a GLSurfaceView object. This class
@@ -75,10 +76,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private ArrayList<PlanetObj> planets = new ArrayList<>();
     private PlanetManager pm;
 
+    private SpinnerListener sl;
+
     private float rotate= 0.0f;
 
-    public MyGLRenderer(Context context){
+    public MyGLRenderer(Context context, SpinnerListener spinnerListener){
         myContext=context;
+        sl = spinnerListener;
     }
     @Override
     public void onSurfaceCreated(GL10 gl,EGLConfig config) {
@@ -178,7 +182,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             }*/
             master = true;
 
-            CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(3));
 
         }
     }
@@ -189,7 +192,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         CamerObj.onRendering(touchPoint.x, touchPoint.y);
         //Logger.log("Touchpointer  "+touchPoint);
 
-        CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(3));
+        CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+        CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
 
 
 

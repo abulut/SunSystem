@@ -20,6 +20,8 @@ import android.graphics.PointF;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
+import UserInterfaceInteraction.SpinnerListener;
+
 /**
  * A view container where OpenGL ES graphics can be drawn on screen.
  * This view can also be used to capture touch events, such as a user
@@ -33,11 +35,11 @@ public class MyGLSurfaceView extends GLSurfaceView {
     private boolean master = false;
 
 
-    public MyGLSurfaceView(Context context) {
+    public MyGLSurfaceView(Context context, SpinnerListener spinnerListener) {
         super(context);
         // Set the Renderer for drawing on the GLSurfaceView
         intouchHandle = new InputTouchHandler();
-        mRenderer = new MyGLRenderer(context);
+        mRenderer = new MyGLRenderer(context, spinnerListener);
         setRenderer(mRenderer);
         // Render the view only when there is a change in the drawing data
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);

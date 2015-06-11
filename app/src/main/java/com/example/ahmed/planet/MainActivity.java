@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             Logger.log("TEST");
-            mGLView = new MyGLSurfaceView(this);
+            mGLView = new MyGLSurfaceView(this, spinnerListener);
 
             RelativeLayout rl = new RelativeLayout(this);
             rl.addView(mGLView);
@@ -130,7 +130,7 @@ public class MainActivity extends ActionBarActivity {
         DisplayInfoFragment DIF = (DisplayInfoFragment) FM.findFragmentByTag("dif");
         if (DIF == null) {
 
-            String planet = spinnerListener.getSpinnerPosition().toString();
+            String planet = spinnerListener.getSpinnerItemName().toString();
             DIF = new DisplayInfoFragment();
             Bundle bundle = new Bundle();
             bundle.putString("planet", planet);

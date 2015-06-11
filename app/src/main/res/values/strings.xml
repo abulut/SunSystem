@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
 
     <string-array name="planets_array">
+        <item>Sonne</item>
         <item>Merkur</item>
         <item>Venus</item>
         <item>Erde</item>
@@ -15,6 +16,18 @@
         <item>Neptun</item>
     </string-array>
 
+    <string-array name="Sonne_info">
+        <item>Name: Sonne</item>
+        <item>Äquator: 1.392.684 km</item>
+        <item>Masse: 1,9884*10^30 kg ± 10^26 kg</item>
+        <item>Mittlere Dichte: 1,408 g/cm^3</item>
+        <item>Fallbeschleunigung: 274 m/s^2</item>
+        <item>Fluchtgeschwindigkeit: 617,3 km/s</item>
+        <item>Rotationsperiode: 25,38d</item>
+        <item>Neigung der Rotationsachse: 7,25°</item>
+        <item>Leuchtkraft: 3,846*10^26</item>
+        <item>Absolute Helligkeit: +4,83 mag</item>
+    </string-array>
     <string-array name="Merkur_info">
         <item>Name: Merkur</item>
         <item>Äquator: 4.879,4 km</item>

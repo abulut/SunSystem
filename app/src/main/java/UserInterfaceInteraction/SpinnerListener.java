@@ -9,7 +9,8 @@ import android.widget.AdapterView;
 
 public class SpinnerListener implements AdapterView.OnItemSelectedListener {
 
-    private Object spinnerPosition;
+    private Object spinnerItemName;
+    private int spinnerItemID;
     private Activity activity;
 
     public SpinnerListener(Activity activity) {
@@ -20,7 +21,8 @@ public class SpinnerListener implements AdapterView.OnItemSelectedListener {
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //Object spinnerPos;
         //spinnerPos = parent.getItemAtPosition(position);
-        spinnerPosition = parent.getItemAtPosition(position);
+        spinnerItemName = parent.getItemAtPosition(position);
+        spinnerItemID = position;
 
         FragmentManager fm = activity.getFragmentManager();
         DisplayInfoFragment f = (DisplayInfoFragment) fm.findFragmentByTag("dif");
@@ -36,7 +38,8 @@ public class SpinnerListener implements AdapterView.OnItemSelectedListener {
 
     }
 
-    public Object getSpinnerPosition() {
-        return spinnerPosition;
+    public Object getSpinnerItemName() {
+        return spinnerItemName;
     }
+    public int getSpinnerItemID() {return spinnerItemID;}
 }
