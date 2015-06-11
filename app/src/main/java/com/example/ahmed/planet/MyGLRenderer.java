@@ -39,8 +39,8 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import PlanetLibrary.PlanetManager;
-import PlanetLibrary.PlanetObj;
+import planetLibrary.PlanetManager;
+import planetLibrary.PlanetObj;
 
 /**
  * Provides drawing instructions for a GLSurfaceView object. This class

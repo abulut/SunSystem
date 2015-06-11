@@ -3,10 +3,7 @@ package com.example.ahmed.planet;
 import android.annotation.TargetApi;
 import android.graphics.PointF;
 import android.os.Build;
-import android.util.FloatMath;
 import android.view.MotionEvent;
-
-import com.threed.jpct.Logger;
 
 import java.util.ArrayList;
 
@@ -75,7 +72,7 @@ public class InputTouchHandler {
                 //wird kleiner Zoom Out
                 distance = Math.max(distance - distancDelta,MIN_ZOOM);
             }else if(distancDelta > 0 && distance >= MIN_ZOOM ){
-                // wird größer Zoom In
+                // wird groesser Zoom In
                 distance = Math.min(distance - distancDelta,MAX_ZOOM);
             }
 /*
