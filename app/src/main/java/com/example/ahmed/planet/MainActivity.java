@@ -15,8 +15,8 @@ import com.threed.jpct.Logger;
 import java.lang.reflect.Field;
 
 import loadScreenLibrary.BackgroundSplashTask;
-import userInterfaceInteraction.DisplayInfoFragment;
-import userInterfaceInteraction.SpinnerListener;
+import UserInterfaceInteraction.DisplayInfoFragment;
+import UserInterfaceInteraction.SpinnerListener;
 
 
 public class MainActivity extends ActionBarActivity {
