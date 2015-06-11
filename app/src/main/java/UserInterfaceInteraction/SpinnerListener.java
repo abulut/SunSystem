@@ -6,8 +6,6 @@ import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 
-import UserInterfaceInteraction.DisplayInfoFragment;
-
 
 public class SpinnerListener implements AdapterView.OnItemSelectedListener {
 

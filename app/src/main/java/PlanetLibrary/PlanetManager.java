@@ -1,10 +1,8 @@
 package PlanetLibrary;
 
 import android.content.Context;
-import android.util.Log;
 
 
-import com.threed.jpct.Logger;
 import com.threed.jpct.Object3D;
 import com.threed.jpct.World;
 
