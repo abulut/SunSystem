@@ -48,26 +48,10 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
 
         synchronized (this)
         {
-            //Initialize an integer (that will act as a counter) to zero
-
-            //try{
-            //While the counter is smaller than four
-                while(counter <= 10)
-                {
-                    //Wait 850 milliseconds
-
-                    //this.wait(850);
-
-                    //Increment the counter
-                    //counter++;
-                    //Set the current progress.
-                    //This value is going to be passed to the onProgressUpdate() method.
-                    //if(counter == 9){counter++;}
-                    publishProgress(counter*10);
-                }
-            //} catch (InterruptedException e) {
-            //        e.printStackTrace();
-            //}
+            while(counter <= 10)
+            {
+                publishProgress(counter*10);
+            }
         }
 
         return null;
