@@ -42,6 +42,7 @@ import javax.microedition.khronos.opengles.GL10;
 import PlanetLibrary.PlanetManager;
 import PlanetLibrary.PlanetObj;
 import UserInterfaceInteraction.SpinnerListener;
+import loadScreenLibrary.BackgroundSplashTask;
 
 /**
  * Provides drawing instructions for a GLSurfaceView object. This class
@@ -79,10 +80,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private SpinnerListener sl;
 
     private float rotate= 0.0f;
+    private BackgroundSplashTask asyncTask;
 
-    public MyGLRenderer(Context context, SpinnerListener spinnerListener){
+    public MyGLRenderer(Context context, SpinnerListener spinnerListener, BackgroundSplashTask async){
         myContext=context;
         sl = spinnerListener;
+        asyncTask = async;
     }
     @Override
     public void onSurfaceCreated(GL10 gl,EGLConfig config) {
@@ -148,7 +151,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             world.addObject(space);
             //1:4 KM
 
-            pm = new PlanetManager(myContext, world);
+            pm = new PlanetManager(myContext, world, asyncTask);
 /*
             planets.add(0, new PlanetObj(myContext.getApplicationContext(), "sun", 1391f));
             planets.get(0).getPlanetObj().setAdditionalColor(255, 255, 255);
@@ -210,6 +213,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
            // Logger.log(fps + "fps");
             fps = 0;
             time = System.currentTimeMillis();
+        }
+
+        if(asyncTask.getCounter() == 9){
+            asyncTask.setCounter(asyncTask.getCounter() + 1);
+            asyncTask.setProgessDialogHidden();
         }
 
         fps++;

@@ -42,18 +42,5 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/splashView"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="bottom|center"
-        android:text="Sun System 3D"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-
-
-        android:textStyle="bold"
-        android:layout_weight="0.42"
-        android:textSize="30dp" />
-
 
 </FrameLayout>

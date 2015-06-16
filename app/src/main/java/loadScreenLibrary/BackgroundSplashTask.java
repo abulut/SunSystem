@@ -11,6 +11,7 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
 
     private ProgressDialog progressDialog;
     private Activity acty;
+    private int counter = 0;
 
     public BackgroundSplashTask(Activity activity){
         acty = activity;
@@ -45,25 +46,28 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
     @Override
     protected Void doInBackground(Void... arg0) {
 
-        try {
-            synchronized (this)
-            {
-                //Initialize an integer (that will act as a counter) to zero
-                int counter = 0;
-                //While the counter is smaller than four
-                while(counter <= 4)
+        synchronized (this)
+        {
+            //Initialize an integer (that will act as a counter) to zero
+
+            //try{
+            //While the counter is smaller than four
+                while(counter <= 10)
                 {
                     //Wait 850 milliseconds
-                    this.wait(2000);
+
+                    //this.wait(850);
+
                     //Increment the counter
-                    counter++;
+                    //counter++;
                     //Set the current progress.
                     //This value is going to be passed to the onProgressUpdate() method.
-                    publishProgress(counter*25);
+                    //if(counter == 9){counter++;}
+                    publishProgress(counter*10);
                 }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            //} catch (InterruptedException e) {
+            //        e.printStackTrace();
+            //}
         }
 
         return null;
@@ -81,4 +85,17 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         super.onPostExecute(result);
         progressDialog.dismiss();
     }
+
+    public void setCounter(int i){
+        counter = i;
+    }
+
+    public int getCounter(){
+        return counter;
+    }
+
+    public void setProgessDialogHidden(){
+        progressDialog.dismiss();
+    }
+
 }

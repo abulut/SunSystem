@@ -21,6 +21,7 @@ import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
 import UserInterfaceInteraction.SpinnerListener;
+import loadScreenLibrary.BackgroundSplashTask;
 
 /**
  * A view container where OpenGL ES graphics can be drawn on screen.
@@ -33,13 +34,16 @@ public class MyGLSurfaceView extends GLSurfaceView {
     private PointF touchPoint = null;
     private float camDistance;
     private boolean master = false;
+    private BackgroundSplashTask asyncTask;
+    private SpinnerListener spinnerListener;
 
-
-    public MyGLSurfaceView(Context context, SpinnerListener spinnerListener) {
+    public MyGLSurfaceView(Context context, SpinnerListener spLtr, BackgroundSplashTask async) {
         super(context);
         // Set the Renderer for drawing on the GLSurfaceView
+        asyncTask =async;
+        spinnerListener = spLtr;
         intouchHandle = new InputTouchHandler();
-        mRenderer = new MyGLRenderer(context, spinnerListener);
+        mRenderer = new MyGLRenderer(context, spinnerListener, asyncTask);
         setRenderer(mRenderer);
         // Render the view only when there is a change in the drawing data
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);

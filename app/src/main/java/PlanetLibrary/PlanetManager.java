@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import loadScreenLibrary.BackgroundSplashTask;
+
 /**
  * Created by Artjem on 28.05.2015.
  */
@@ -23,11 +25,13 @@ public class PlanetManager{
     World world;
     ArrayList<Object3D> planets;
     PlanetObj planet;
-
-    public PlanetManager(Context ctx, World w) {
+    private int counter=0;
+    private BackgroundSplashTask asycnTask;
+    public PlanetManager(Context ctx, World w, BackgroundSplashTask async) {
 
         this.ctx = ctx;
         this.world = w;
+        this.asycnTask = async;
         planets = new ArrayList<>();
         try {
             planetInfo = new JSONObject(loadJSONFromAsset());
@@ -52,6 +56,8 @@ public class PlanetManager{
                     planet.addHemi(world, 6);
                 }
                 planets.add(i,planet.getPlanetObj().cloneObject());
+                counter+=1;
+                asycnTask.setCounter(counter);
             }
 
 
@@ -60,7 +66,6 @@ public class PlanetManager{
         }catch (JSONException jex){
         }
     }
-
 
     public Object3D getPlanetOBJFromIndex(int i){
         return planets.get(i);
