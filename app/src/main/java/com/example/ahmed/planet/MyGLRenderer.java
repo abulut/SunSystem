@@ -70,7 +70,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private CamerObj cam = null;
     private int fps = 0;
 
-    private Light sun = null;
+    private Light sunlight = null;
     private PointF touchPoint = null;
     private GLSLShader shader = null;
 
@@ -119,11 +119,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             touchPoint = new PointF();
             world = new World();
 
-            sun = new Light(world);
-            sun.enable();
+            sunlight = new Light(world);
+            sunlight.enable();
 
-            sun.setIntensity(127, 127, 127);
-            sun.setPosition(SimpleVector.create(0, 0, 200));
+            sunlight.setIntensity(127, 127, 127);
+            sunlight.setPosition(SimpleVector.create(0, 0, 0));
 
             world.setAmbientLight(30, 30, 30);
             world.setClippingPlanes(0,5000000);
@@ -152,6 +152,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             //1:4 KM
 
             pm = new PlanetManager(myContext, world, asyncTask);
+            Logger.log("HEMISPHERE  ---------------------    "+pm.getHemispOBJFromIndex(3));
 /*
             planets.add(0, new PlanetObj(myContext.getApplicationContext(), "sun", 1391f));
             planets.get(0).getPlanetObj().setAdditionalColor(255, 255, 255);
@@ -198,11 +199,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
         CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
 
+        //fixirt die Cam auf die Erden Hemisphere  nur zum test!!!
+        //CamerObj.focusonPlanet(pm.getHemispOBJFromIndex(3));
+        //CamerObj.setRotateCenter(pm.getHemispOBJFromIndex(3));
 
 
-   //     rotate = rotate -0.000005f;
-  //      planets.get(1).getPlanetObj().rotateY(rotate);
 
+        pm.onRender();
 
         fb.clear(back);
         world.renderScene(fb);

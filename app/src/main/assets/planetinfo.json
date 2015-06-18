@@ -5,9 +5,10 @@
       "posx": "0",
       "posy": "0",
       "posz": "0",
-      "diameter": "13.91",
+      "diameter": "27.82",
       "hemi":"false",
-      "addColor":"255"
+      "addColor":"255",
+      "rotateSpeed":0
     },
     {
       "name":"mercur",
@@ -16,7 +17,8 @@
       "posz": "-58",
       "diameter": "4.879",
       "hemi":"false",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"47.87"
     },
     {
       "name":"venus",
@@ -25,7 +27,8 @@
       "posz": "-108",
       "diameter": "12.103",
       "hemi":"false",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"35.02"
     },
     {
       "name":"earth",
@@ -34,7 +37,8 @@
       "posz": "-150",
       "diameter": "12.734",
       "hemi":"true",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"29.78"
     },
     {
       "name":"mars",
@@ -43,7 +47,8 @@
       "posz": "-228",
       "diameter": "6.772",
       "hemi":"false",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"24.077"
     },
     {
       "name":"jupiter",
@@ -52,7 +57,8 @@
       "posz": "-778",
       "diameter": "138.346",
       "hemi":"false",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"13.07"
     },
     {
       "name":"saturn",
@@ -61,7 +67,8 @@
       "posz": "-1433",
       "diameter": "114.632",
       "hemi":"false",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"9.69"
     },
     {
       "name":"uranus",
@@ -70,7 +77,8 @@
       "posz": "-2872",
       "diameter": "50.532",
       "hemi":"false",
-      "addColor":"76"
+      "addColor":"76",
+      "rotateSpeed":"6.81"
     },
     {
       "name":"neptune",
@@ -79,7 +87,8 @@
       "posz": "-4495",
       "diameter": "49.105",
       "hemi":"false",
-      "addColor":"255"
+      "addColor":"255",
+      "rotateSpeed":"5.43"
     }
   ]
 }

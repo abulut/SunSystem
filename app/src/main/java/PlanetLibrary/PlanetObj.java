@@ -65,7 +65,7 @@ public class PlanetObj extends Object3D {
     }
 
 
-    public void addHemi(World world, int alpha){
+    public void addHemi(int alpha){
 
         loadTexture(planetTexture, "H","h");
         loadTexture(planetTexture, "HN", "hn");
@@ -91,7 +91,7 @@ public class PlanetObj extends Object3D {
         }catch (IOException e){
 
         }
-        world.addObject(this.hemisphere);
+       // world.addObject(this.hemisphere);
         this.hemisphere.translate(planet.getTransformedCenter());
     }
 
@@ -107,7 +107,7 @@ public class PlanetObj extends Object3D {
 
     public  void moveObj(float x,float y,float z){
         planet.translate(x,y,z);
-        realpos = new SimpleVector(x,y,z);
+
     }
 
     public String getPlanetName(){
@@ -116,13 +116,16 @@ public class PlanetObj extends Object3D {
     public Object3D getPlanetObj(){
         return this.planet;
     }
+
     public Object3D getHemiObj(){
-        return hemisphere;
+        return this.hemisphere;
     }
 
     public void rotateY(float speed){
         this.getPlanetObj().rotateY(speed);
     }
+
+
 
 }
 
