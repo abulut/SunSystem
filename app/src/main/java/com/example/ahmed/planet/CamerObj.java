@@ -62,14 +62,24 @@ public class CamerObj {
     }
 
 
+/*
+    public static void onPlanetChange (Object3D planet){
+        SimpleVector vec = new SimpleVector(planet.getTransformedCenter());
+        for (int i=0; i==100; i++){
+            vec.x = +i;
+            vec.y = +i;
+            vec.z = +i;
+        }
+
+    }*/
+
+
     public static void setRotateCenter(Object3D newRotateCenter){
         rotateCenter = newRotateCenter.getTransformedCenter();
     }
     public static void focusonPlanet(Object3D planet){
         cam.lookAt(planet.getTransformedCenter());
     }
-
-    public static SimpleVector getCamPos(){return rotateVec;}
 
     public static void setCameraDistance(float newDistance){
         distance = newDistance;

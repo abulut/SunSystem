@@ -65,6 +65,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float mAngleY;
 
     private float camDistance;
+    private float transitionDistance = 0;
+    private float transitionY = 0;
 
     private Object3D space = null;
     private CamerObj cam = null;
@@ -82,6 +84,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float rotate= 0.0f;
     private BackgroundSplashTask asyncTask;
 
+    private boolean planetChanged;
+    private boolean transitionOut;
+    
     public MyGLRenderer(Context context, SpinnerListener spinnerListener, BackgroundSplashTask async){
         myContext=context;
         sl = spinnerListener;
@@ -184,6 +189,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 Logger.log("Saving master Activity!");
                 master = HelloWorld.this;
             }*/
+            transitionOut = true;
             master = true;
 
 
@@ -192,38 +198,96 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 gl) {
 
-        CamerObj.setCameraDistance(camDistance);
-        CamerObj.onRendering(touchPoint.x, touchPoint.y);
-        //Logger.log("Touchpointer  "+touchPoint);
-
-        CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
-        CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
-
-        //fixirt die Cam auf die Erden Hemisphere  nur zum test!!!
-        //CamerObj.focusonPlanet(pm.getHemispOBJFromIndex(3));
-        //CamerObj.setRotateCenter(pm.getHemispOBJFromIndex(3));
-
-
-
+        planetChanged = sl.getPlanetChanged();
         pm.onRender();
 
-        fb.clear(back);
-        world.renderScene(fb);
-        world.draw(fb);
-        fb.display();
-
         if (System.currentTimeMillis() - time >= 1000) {
-           // Logger.log(fps + "fps");
+            // Logger.log(fps + "fps");
             fps = 0;
             time = System.currentTimeMillis();
         }
-
+        
         if(asyncTask.getCounter() == 9){
             asyncTask.setCounter(asyncTask.getCounter() + 1);
             asyncTask.setProgessDialogHidden();
         }
 
-        fps++;
+        if (!planetChanged){
+            CamerObj.setCameraDistance(camDistance);
+            CamerObj.onRendering(touchPoint.x, touchPoint.y);
+            CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+            CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+        //fixirt die Cam auf die Erden Hemisphere  nur zum test!!!
+        //CamerObj.focusonPlanet(pm.getHemispOBJFromIndex(3));
+        //CamerObj.setRotateCenter(pm.getHemispOBJFromIndex(3));
+            
+            fb.clear(back);
+            world.renderScene(fb);
+            world.draw(fb);
+            fb.display();
+
+            transitionDistance = camDistance;
+            transitionY = touchPoint.y;
+            fps++;
+
+        } else if (planetChanged) {
+
+            if(transitionOut){
+                if(camDistance<150) {
+
+                    CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getFormerSpinnerItemID()));
+                    CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getFormerSpinnerItemID()));
+                    CamerObj.setCameraDistance(camDistance);
+
+                    CamerObj.onRendering(touchPoint.x, touchPoint.y);
+
+                    
+                    fb.clear(back);
+                    world.renderScene(fb);
+                    world.draw(fb);
+                    fb.display();
+
+                    fps++;
+                    camDistance += 0.5;
+                    if (touchPoint.y < 30) {
+                        touchPoint.y += 0.01;
+                    }
+
+                } else if (camDistance>= 150) {
+                    transitionOut = false;
+                }
+
+
+            } else if (!transitionOut){
+
+                if (camDistance > transitionDistance){
+                    CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+                    CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+                    CamerObj.setCameraDistance(camDistance);
+
+                    CamerObj.onRendering(touchPoint.x, touchPoint.y);
+
+                    
+                    fb.clear(back);
+                    world.renderScene(fb);
+                    world.draw(fb);
+                    fb.display();
+
+                    fps++;
+                    camDistance -= 0.5;
+                    if (touchPoint.y > transitionY){
+                        touchPoint.y -= 0.01;
+                    }
+                } else if (camDistance <= transitionDistance) {
+                    Logger.log("PlanetChanged= true");
+                    CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+                    CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
+                    transitionDistance = 0;
+                    transitionOut = true;
+                    sl.setPlanetChangedFalse();
+                }
+            }
+        }
     }
 
     public boolean getMaster(){
