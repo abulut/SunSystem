@@ -207,10 +207,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             time = System.currentTimeMillis();
         }
         
-        if(asyncTask.getCounter() == 9){
-            asyncTask.setCounter(asyncTask.getCounter() + 1);
-            asyncTask.setProgessDialogHidden();
-        }
+
 
         if (!planetChanged){
             CamerObj.setCameraDistance(camDistance);
@@ -287,6 +284,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                     sl.setPlanetChangedFalse();
                 }
             }
+        }
+
+        if(asyncTask.getCounter() == 9){
+            asyncTask.setCounter(asyncTask.getCounter() + 1);
+            asyncTask.setProgessDialogHidden();
         }
     }
 

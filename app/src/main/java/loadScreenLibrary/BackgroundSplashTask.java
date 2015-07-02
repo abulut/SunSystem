@@ -67,7 +67,6 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        progressDialog.dismiss();
     }
 
     public void setCounter(int i){
