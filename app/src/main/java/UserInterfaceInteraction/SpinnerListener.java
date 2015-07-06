@@ -6,8 +6,6 @@ import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.threed.jpct.Logger;
-
 
 public class SpinnerListener implements AdapterView.OnItemSelectedListener {
 
@@ -24,20 +22,18 @@ public class SpinnerListener implements AdapterView.OnItemSelectedListener {
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // If statement used on startup of the app to avoid a cameratransition when starting the app, because onItemSelected function
+        // If-statement used on startup of the app to avoid a cameratransition when starting the app, because onItemSelected function
         // is automatically run one time on start
         if (!appStarted){
             spinnerItemName = parent.getItemAtPosition(position);
             spinnerItemID = position;
             appStarted = true;
-            Logger.log("App nicht gestartet");
 
         } else if (appStarted) {
             formerSpinnerItemID = spinnerItemID;
             spinnerItemName = parent.getItemAtPosition(position);
             spinnerItemID = position;
             planetChanged = true;
-            Logger.log("App gestartet");
 
             FragmentManager fm = activity.getFragmentManager();
             DisplayInfoFragment f = (DisplayInfoFragment) fm.findFragmentByTag("dif");
