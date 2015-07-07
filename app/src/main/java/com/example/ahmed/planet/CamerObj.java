@@ -29,7 +29,7 @@ public class CamerObj {
     private static boolean yVectorGreater;
     private static boolean zVectorGreater;
     private static float moveSpeed = (float) 3;
-    private static float lookSpeed = (float) 5;
+    private static float lookSpeed = (float) 2;
 
     private static Matrix m = new Matrix();
     static float xAxis;
@@ -171,11 +171,11 @@ public class CamerObj {
             } else if(planetChangeVector.x >= newPlanet.getTransformedCenter().x) {
                 xVectorGreater = false;
             }
-            if(planetChangeVector.y < newPlanet.getTransformedCenter().y) {
-                yVectorGreater = true;
-            } else if(planetChangeVector.y >= newPlanet.getTransformedCenter().y) {
-                yVectorGreater = false;
-            }
+//            if(planetChangeVector.y < newPlanet.getTransformedCenter().y) {
+//                yVectorGreater = true;
+//            } else if(planetChangeVector.y >= newPlanet.getTransformedCenter().y) {
+//                yVectorGreater = false;
+//            }
             if(planetChangeVector.z < newPlanet.getTransformedCenter().z) {
                 zVectorGreater = true;
             } else if(planetChangeVector.z >= newPlanet.getTransformedCenter().z) {
@@ -195,16 +195,16 @@ public class CamerObj {
                 planetChangeVector.x = newPlanet.getTransformedCenter().x;
             }
 
-            if(yVectorGreater && planetChangeVector.y < newPlanet.getTransformedCenter().y) {
-                planetChangeVector.y += lookSpeed;
-            } else if(yVectorGreater && planetChangeVector.y >= newPlanet.getTransformedCenter().y){
-                planetChangeVector.y = newPlanet.getTransformedCenter().y;
-            }
-            if(!yVectorGreater && planetChangeVector.y > newPlanet.getTransformedCenter().y) {
-                planetChangeVector.y -= lookSpeed;
-            } else if(!yVectorGreater && planetChangeVector.y <= newPlanet.getTransformedCenter().y){
-                planetChangeVector.y = newPlanet.getTransformedCenter().y;
-            }
+//            if(yVectorGreater && planetChangeVector.y < newPlanet.getTransformedCenter().y) {
+//                planetChangeVector.y += lookSpeed;
+//            } else if(yVectorGreater && planetChangeVector.y >= newPlanet.getTransformedCenter().y){
+//                planetChangeVector.y = newPlanet.getTransformedCenter().y;
+//            }
+//            if(!yVectorGreater && planetChangeVector.y > newPlanet.getTransformedCenter().y) {
+//                planetChangeVector.y -= lookSpeed;
+//            } else if(!yVectorGreater && planetChangeVector.y <= newPlanet.getTransformedCenter().y){
+//                planetChangeVector.y = newPlanet.getTransformedCenter().y;
+//            }
 
             if(zVectorGreater && planetChangeVector.z < newPlanet.getTransformedCenter().z) {
                 planetChangeVector.z += lookSpeed;
@@ -217,7 +217,7 @@ public class CamerObj {
                 planetChangeVector.z = newPlanet.getTransformedCenter().z;
             }
         }
-        if(planetChangeVector.x == newPlanet.getTransformedCenter().x && planetChangeVector.y == newPlanet.getTransformedCenter().y && planetChangeVector.z == newPlanet.getTransformedCenter().z){
+        if(planetChangeVector.x == newPlanet.getTransformedCenter().x && planetChangeVector.z == newPlanet.getTransformedCenter().z){
             checkVectors = true;
             mGLR.setTransitionLook(false);
             mGLR.setTransitionIn(true);
