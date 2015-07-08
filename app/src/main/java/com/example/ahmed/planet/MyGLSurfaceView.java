@@ -49,6 +49,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
     public boolean onTouchEvent(MotionEvent me) {
+
         int pointerIndex = me.getActionIndex();
         int maskedAction = me.getActionMasked();
         switch (maskedAction) {

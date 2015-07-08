@@ -205,7 +205,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         if (!planetChanged){
             pm.onRender();
-            CamerObj.setCameraDistance(camDistance);
+            CamerObj.setCameraDistance(camDistance + pm.getPlanetDiamByIndex(sl.getSpinnerItemID()));// pm.getPlanetDiamByIndex(sl.getSpinnerItemID()
+
             CamerObj.onRendering(touchPoint.x, touchPoint.y);
             CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
             CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));

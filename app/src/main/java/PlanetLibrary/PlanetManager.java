@@ -11,8 +11,12 @@ import org.json.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Array;
 import java.util.ArrayList;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import com.threed.jpct.Logger;
 
 import loadScreenLibrary.BackgroundSplashTask;
 
@@ -27,8 +31,15 @@ public class PlanetManager{
     World world;
     ArrayList<Object3D> planets;
     ArrayList<Object3D> hemispheres;
+
+    List<HashMap<String, Float>> orbitPosList;
+    HashMap<String, Float> orbitPos;
+
+    ArrayList<Float> planetsDiam;
+
     PlanetObj planet;
     ArrayList <SimpleVector> planetTranslation;
+
 
     private int counter=0;
     private BackgroundSplashTask asycnTask;
@@ -39,6 +50,10 @@ public class PlanetManager{
     public PlanetManager(Context ctx, World w, BackgroundSplashTask async) {
         planets = new ArrayList<>();
         hemispheres = new ArrayList<>();
+        orbitPos = new HashMap<String, Float>();
+        orbitPosList = new ArrayList<HashMap<String, Float>>();
+        planetsDiam = new ArrayList<Float>();
+
 
         planetTranslation = new ArrayList<>();
         myOrbitAngles = new ArrayList<>();
@@ -56,11 +71,16 @@ public class PlanetManager{
                 float posx = (float)planetsinfoArray.getJSONObject(i).getDouble("posx");
                 float posy = (float)planetsinfoArray.getJSONObject(i).getDouble("posy");
                 float posz = (float)planetsinfoArray.getJSONObject(i).getDouble("posz")*2f;
-                float diam = (float)planetsinfoArray.getJSONObject(i).getDouble("diameter")*0.5f;
+                planetsDiam.add(i,(float)planetsinfoArray.getJSONObject(i).getDouble("diameter"));
+                float diam = planetsDiam.get(i) * 0.5f;
                 boolean hemitoADD = planetsinfoArray.getJSONObject(i).getBoolean("hemi");
                 int addColor = planetsinfoArray.getJSONObject(i).getInt("addColor");
 
-                orbitSpeed.add(i, (float) planetsinfoArray.getJSONObject(i).getDouble("rotateSpeed") / 3000);
+                orbitPos.put("aphel", (float) planetsinfoArray.getJSONObject(i).getDouble("aphel") / 100);
+                orbitPos.put("perihel", (float) planetsinfoArray.getJSONObject(i).getDouble("perihel") / 100);
+                orbitPosList.add(i, orbitPos);
+                orbitSpeed.add(i, (float) planetsinfoArray.getJSONObject(i).getDouble("rotateSpeed") / 10000);
+
                 myOrbitAngles.add(i, 0f);
 
 
@@ -68,7 +88,8 @@ public class PlanetManager{
 
                 planet =  new PlanetObj(ctx.getApplicationContext(),planetName , diam);
                 planet.moveObj(planetTranslation.get(i).x, planetTranslation.get(i).y, planetTranslation.get(i).z);
-                planet.setName(planetName);
+
+
                 planet.getPlanetObj().setAdditionalColor(addColor, addColor, addColor);
                 world.addObject(planet.getPlanetObj());
 
@@ -76,10 +97,13 @@ public class PlanetManager{
 
                 if(hemitoADD == true) {
                     planet.addHemi(6);
+                    planet.getHemiObj().addParent(planet.getPlanetObj());
                     world.addObject(planet.getHemiObj());
+                }else{
+
                 }
 
-                hemispheres.add(i,planet.getHemiObj());
+                hemispheres.add(i, planet.getHemiObj());
                 planets.add(i, planet.getPlanetObj());
 
 
@@ -88,7 +112,7 @@ public class PlanetManager{
 
             }
 
-
+            Logger.log("PLAnetCHILD --------"+hemispheres.get(3).getParents().length);
 
 
         }catch (JSONException jex){
@@ -100,15 +124,19 @@ public class PlanetManager{
         return planets.get(i);
     }
     public Object3D getHemispOBJFromIndex(int i) { return hemispheres.get(i); }
+    public Float getPlanetDiamByIndex(int i){ return planetsDiam.get(i);}
 
     public void onRender(){
-
 
 
         //thx @ http://www.jpct.net/forum2/index.php/topic,3007.15.html
         for(int i = 0;i < planets.size();i++) {
 
-            myOrbitAngles.set(i,myOrbitAngles.get(i)+ orbitSpeed.get(i) );
+
+            planets.get(i).rotateY(-0.05f);
+
+
+            myOrbitAngles.set(i,myOrbitAngles.get(i) + orbitSpeed.get(i) );
           //  myOrbitAngle += myOrbitSpeed;
             if (myOrbitAngles.get(i) > Math.PI * 2)
                 myOrbitAngles.set(i, myOrbitAngles.get(i)%(float)Math.PI *2);
@@ -116,8 +144,8 @@ public class PlanetManager{
             SimpleVector sv = new SimpleVector();
 
             //double rad = (myOrbitAngle * (Math.PI / 180)); // Converting Degrees To Radians
-            double x = 0 - planetTranslation.get(i).z * (Math.cos(myOrbitAngles.get(i)) * .5);
-            double z = 0 - planetTranslation.get(i).z * (Math.sin(myOrbitAngles.get(i)) * 1);
+            double x = 0 - planetTranslation.get(i).z * (Math.cos(myOrbitAngles.get(i)) * orbitPosList.get(i).get("aphel"));
+            double z = 0 - planetTranslation.get(i).z * (Math.sin(myOrbitAngles.get(i)) * orbitPosList.get(i).get("perihel"));
 
             sv.x = (float) x;
             sv.z = (float) z;
@@ -127,6 +155,7 @@ public class PlanetManager{
             planets.get(i).clearTranslation();
             planets.get(i).translate(sv);
             planets.get(i).rotateY(orbitSpeed.get(i));
+
 
         }
     }

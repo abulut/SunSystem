@@ -195,7 +195,6 @@ public class CamerObj {
                 planetChangeVector.x = newPlanet.getTransformedCenter().x;
             }
 
-
 //            if(yVectorGreater && planetChangeVector.y < newPlanet.getTransformedCenter().y) {
 //                planetChangeVector.y += lookSpeed;
 //            } else if(yVectorGreater && planetChangeVector.y >= newPlanet.getTransformedCenter().y){

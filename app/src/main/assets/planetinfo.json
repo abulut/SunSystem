@@ -8,7 +8,9 @@
       "diameter": "27.82",
       "hemi":"false",
       "addColor":"255",
-      "rotateSpeed":0
+      "rotateSpeed":"0",
+      "aphel":"0",
+      "perihel":"0"
     },
     {
       "name":"mercur",
@@ -18,7 +20,9 @@
       "diameter": "4.879",
       "hemi":"false",
       "addColor":"76",
-      "rotateSpeed":"47.87"
+      "rotateSpeed":"47.87",
+      "aphel":"0.47",
+      "perihel":"0.31"
     },
     {
       "name":"venus",
@@ -28,7 +32,9 @@
       "diameter": "12.103",
       "hemi":"false",
       "addColor":"76",
-      "rotateSpeed":"35.02"
+      "rotateSpeed":"35.02",
+      "aphel":"0.73",
+      "perihel":"0.72"
     },
     {
       "name":"earth",
@@ -38,7 +44,9 @@
       "diameter": "12.734",
       "hemi":"true",
       "addColor":"76",
-      "rotateSpeed":"29.78"
+      "rotateSpeed":"29.78",
+      "aphel":"1.02",
+      "perihel":"0.98"
     },
     {
       "name":"mars",
@@ -48,7 +56,9 @@
       "diameter": "6.772",
       "hemi":"false",
       "addColor":"76",
-      "rotateSpeed":"24.077"
+      "rotateSpeed":"24.077",
+      "aphel":"1.67",
+      "perihel":"1.38"
     },
     {
       "name":"jupiter",
@@ -58,7 +68,9 @@
       "diameter": "138.346",
       "hemi":"false",
       "addColor":"76",
-      "rotateSpeed":"13.07"
+      "rotateSpeed":"13.07",
+      "aphel":"5.45",
+      "perihel":"4.95"
     },
     {
       "name":"saturn",
@@ -68,7 +80,9 @@
       "diameter": "114.632",
       "hemi":"false",
       "addColor":"76",
-      "rotateSpeed":"9.69"
+      "rotateSpeed":"9.69",
+      "aphel":"10.09",
+      "perihel":"8.98"
     },
     {
       "name":"uranus",
@@ -78,7 +92,9 @@
       "diameter": "50.532",
       "hemi":"false",
       "addColor":"76",
-      "rotateSpeed":"6.81"
+      "rotateSpeed":"6.81",
+      "aphel":"20.09",
+      "perihel":"18.28"
     },
     {
       "name":"neptune",
@@ -88,7 +104,9 @@
       "diameter": "49.105",
       "hemi":"false",
       "addColor":"255",
-      "rotateSpeed":"5.43"
+      "rotateSpeed":"5.43",
+      "aphel":"30.33",
+      "perihel":"29.79"
     }
   ]
 }

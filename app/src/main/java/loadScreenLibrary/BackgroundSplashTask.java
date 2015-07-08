@@ -55,6 +55,7 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         }
 
         return null;
+        
     }
 
     //Third call

@@ -98,6 +98,10 @@ public class InputTouchHandler {
 
         return d;
     }
+    public static void setMaxMinZoom(float nMax, float nMin){
+        MAX_ZOOM = nMax;
+        MIN_ZOOM = nMin;
+    }
     public static float getCameraDistance(){
         return distance;
     }

@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Created by Artjem on 20.05.2015.
  */
-public class PlanetObj extends Object3D {
+public class PlanetObj {
 
     public static String planetTexture = null;
     public static Context ctx = null;
@@ -29,7 +29,7 @@ public class PlanetObj extends Object3D {
 
     public PlanetObj(Context ctx, String planetTexture, float size){
 
-        super(planet);
+
 
         this.planetTexture = planetTexture;
         this.ctx = ctx;
@@ -45,7 +45,7 @@ public class PlanetObj extends Object3D {
 
             planet = Object3D.mergeAll(Loader.load3DS(ctx.getResources().getAssets().open("planet.3ds"), this.size));
             planet.setScale(1);
-            planet.rotateX(-(float) Math.PI / 2);
+            planet.rotateX(-(float) (Math.PI / 360)*180);
             planet.setCulling(true);
 
             planet.setTexture(ti);
@@ -64,7 +64,6 @@ public class PlanetObj extends Object3D {
 
     }
 
-
     public void addHemi(int alpha){
 
         loadTexture(planetTexture, "H","h");
@@ -75,6 +74,8 @@ public class PlanetObj extends Object3D {
 
         try{
             hemisphere = Object3D.mergeAll(Loader.load3DS(ctx.getResources().getAssets().open("planet.3ds"), this.size+0.05f));
+
+
             hemisphere.setScale(1);
             hemisphere.rotateX(-(float) Math.PI / 2);
             hemisphere.setCulling(true);
@@ -84,6 +85,7 @@ public class PlanetObj extends Object3D {
             hemisphere.setTransparency(alpha);
 
             hemisphere.setSpecularLighting(true);
+
             hemisphere.compile();
 
             hemisphere.strip();
