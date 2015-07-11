@@ -5,7 +5,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 /**
- * Created by Ahmed on 11.06.2015.
+ * Created by Ahmed, Artjem, Arndt  on 11.06.2015.
  */
 public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
 
@@ -17,7 +17,7 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         acty = activity;
     }
 
-    //First call from the AsyncTask
+    //First call from the AsyncTask and create the progressDialog with the attributes
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -42,23 +42,22 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
     }
 
 
-    //Second Call
+    //the while loop for the counter
     @Override
     protected Void doInBackground(Void... arg0) {
 
-        synchronized (this)
-        {
+
             while(counter <= 10)
             {
                 publishProgress(counter*10);
             }
-        }
+
 
         return null;
         
     }
 
-    //Third call
+    //sets the attribute for the Dialog
     @Override
     protected void onProgressUpdate(Integer... arg0){
         progressDialog.setProgress(arg0[0]);
@@ -70,14 +69,17 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         super.onPostExecute(result);
     }
 
+    //Sets the counter for the ProgressDialog
     public void setCounter(int i){
         counter = i;
     }
 
+    //Gets the counter for the ProgressDialog
     public int getCounter(){
         return counter;
     }
 
+    //Sets hidden the PorgressDialog
     public void setProgessDialogHidden(){
         progressDialog.dismiss();
     }
