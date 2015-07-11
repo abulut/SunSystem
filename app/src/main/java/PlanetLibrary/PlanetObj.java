@@ -8,13 +8,12 @@ import com.threed.jpct.SimpleVector;
 import com.threed.jpct.Texture;
 import com.threed.jpct.TextureInfo;
 import com.threed.jpct.TextureManager;
-import com.threed.jpct.World;
 import com.threed.jpct.util.BitmapHelper;
 
 import java.io.IOException;
 
 /**
- * Created by Artjem on 20.05.2015.
+ * Created by Ahmed, Artjem, Arndt on 20.05.2015.
  */
 public class PlanetObj {
 

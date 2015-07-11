@@ -45,16 +45,11 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
     //the while loop for the counter
     @Override
     protected Void doInBackground(Void... arg0) {
-
-
-            while(counter <= 10)
-            {
-                publishProgress(counter*10);
-            }
-
-
+        while(counter <= 10)
+        {
+            publishProgress(counter*10);
+        }
         return null;
-        
     }
 
     //sets the attribute for the Dialog
@@ -63,7 +58,7 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         progressDialog.setProgress(arg0[0]);
     }
 
-    //Last call
+    //Last call from the AsyncTask do nothing
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
@@ -79,8 +74,8 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         return counter;
     }
 
-    //Sets hidden the PorgressDialog
-    public void setProgessDialogHidden(){
+    //Sets hidden the ProgressDialog
+    public void setProgressDialogHidden(){
         progressDialog.dismiss();
     }
 

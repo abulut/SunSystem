@@ -6,7 +6,9 @@ import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 
-
+/**
+ * Created by Ahmed, Artjem, Arndt on 20.05.2015.
+ */
 public class SpinnerListener implements AdapterView.OnItemSelectedListener {
 
     private Object spinnerItemName;

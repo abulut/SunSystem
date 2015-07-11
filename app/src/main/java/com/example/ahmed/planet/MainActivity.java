@@ -17,7 +17,9 @@ import java.lang.reflect.Field;
 import loadScreenLibrary.BackgroundSplashTask;
 import UserInterfaceInteraction.DisplayInfoFragment;
 import UserInterfaceInteraction.SpinnerListener;
-
+/**
+ * Created by Ahmed, Artjem, Arndt on 16.05.2015.
+ */
 
 public class MainActivity extends ActionBarActivity {
 

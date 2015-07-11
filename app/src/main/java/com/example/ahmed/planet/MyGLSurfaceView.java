@@ -22,11 +22,8 @@ import android.view.MotionEvent;
 
 import UserInterfaceInteraction.SpinnerListener;
 import loadScreenLibrary.BackgroundSplashTask;
-
 /**
- * A view container where OpenGL ES graphics can be drawn on screen.
- * This view can also be used to capture touch events, such as a user
- * interacting with drawn objects.
+ * Created by Ahmed, Artjem, Arndt on 16.05.2015.
  */
 public class MyGLSurfaceView extends GLSurfaceView {
     private final MyGLRenderer mRenderer;

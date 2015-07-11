@@ -2,26 +2,25 @@ package PlanetLibrary;
 
 import android.content.Context;
 
-
+import com.threed.jpct.Logger;
 import com.threed.jpct.Object3D;
 import com.threed.jpct.SimpleVector;
 import com.threed.jpct.World;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.threed.jpct.Logger;
 
 import loadScreenLibrary.BackgroundSplashTask;
 
 /**
- * Created by Artjem on 28.05.2015.
+ * Created by Ahmed, Artjem, Arndt on 28.05.2015.
  */
 public class PlanetManager{
 

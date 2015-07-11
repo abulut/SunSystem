@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 
 /**
- * Created by Artjem on 16.04.2015.
+ * Created by Ahmed, Artjem, Arndt on 16.05.2015.
  */
 public class InputTouchHandler {
 

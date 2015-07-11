@@ -43,7 +43,9 @@ import PlanetLibrary.PlanetManager;
 import PlanetLibrary.PlanetObj;
 import UserInterfaceInteraction.SpinnerListener;
 import loadScreenLibrary.BackgroundSplashTask;
-
+/**
+ * Created by Ahmed, Artjem, Arndt on 16.05.2015.
+ */
 /**
  * Provides drawing instructions for a GLSurfaceView object. This class
  * must override the OpenGL ES drawing lifecycle methods:
@@ -241,7 +243,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         if(asyncTask.getCounter() == 9){
             asyncTask.setCounter(asyncTask.getCounter() + 1);
-            asyncTask.setProgessDialogHidden();
+            asyncTask.setProgressDialogHidden();
         }
     }
 

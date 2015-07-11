@@ -10,7 +10,9 @@ import android.widget.ListView;
 
 import com.example.ahmed.planet.R;
 
-
+/**
+ * Created by Ahmed, Artjem, Arndt on 20.05.2015.
+ */
 public class DisplayInfoFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

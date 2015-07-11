@@ -9,7 +9,7 @@ import com.example.ahmed.planet.MainActivity;
 import com.example.ahmed.planet.R;
 
 /**
- * Created by Ahmed on 11.06.2015.
+ * Created by Ahmed, Artjem, Arndt on 11.06.2015.
  */
 public class SplashActivity extends Activity{
     // Splash screen timer
@@ -21,10 +21,11 @@ public class SplashActivity extends Activity{
         setContentView(R.layout.splash);
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
+                //the first Activity with e logo and then the MainActivity
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                //starts the next Activity
                 startActivity(i);
                 //closed the open Activity
                 finish();
