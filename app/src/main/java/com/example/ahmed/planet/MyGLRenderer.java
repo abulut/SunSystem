@@ -34,26 +34,15 @@ import com.threed.jpct.util.BitmapHelper;
 import com.threed.jpct.util.MemoryHelper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import PlanetLibrary.PlanetManager;
-import PlanetLibrary.PlanetObj;
 import UserInterfaceInteraction.SpinnerListener;
 import loadScreenLibrary.BackgroundSplashTask;
 /**
  * Created by Ahmed, Artjem, Arndt on 16.05.2015.
- */
-/**
- * Provides drawing instructions for a GLSurfaceView object. This class
- * must override the OpenGL ES drawing lifecycle methods:
- * <ul>
- *   <li>{@link android.opengl.GLSurfaceView.Renderer#onSurfaceCreated}</li>
- *   <li>{@link android.opengl.GLSurfaceView.Renderer#onDrawFrame}</li>
- *   <li>{@link android.opengl.GLSurfaceView.Renderer#onSurfaceChanged}</li>
- * </ul>
  */
 public class MyGLRenderer implements GLSurfaceView.Renderer {
     private long time = System.currentTimeMillis();
@@ -62,9 +51,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private FrameBuffer fb = null;
     private World world = null;
     private RGBColor back = new RGBColor(255, 255, 255);
-
-    private float mAngleX;
-    private float mAngleY;
 
     private float camDistance;
 
@@ -76,7 +62,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private PointF touchPoint = null;
     private GLSLShader shader = null;
 
-    private ArrayList<PlanetObj> planets = new ArrayList<>();
     private PlanetManager pm;
 
     private SpinnerListener sl;
@@ -160,23 +145,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
             pm = new PlanetManager(myContext, world, asyncTask);
             Logger.log("HEMISPHERE  ---------------------    "+pm.getHemispOBJFromIndex(3));
-/*
-            planets.add(0, new PlanetObj(myContext.getApplicationContext(), "sun", 1391f));
-            planets.get(0).getPlanetObj().setAdditionalColor(255, 255, 255);
-            planets.get(0).getPlanetObj().setLighting(0);
-            world.addObject(planets.get(0).getPlanetObj());
-
-
-
-
-            planets.add(1, new PlanetObj(myContext.getApplicationContext(), "earth", 12.734f));
-            planets.get(1).moveObj(0, 0, -150000);
-            planets.get(1).getPlanetObj().setAdditionalColor(76, 76, 76);
-            world.addObject(planets.get(1).getPlanetObj());
-            planets.get(1).addHemi(world, 6);
-
-
-*/
 
             cam = new CamerObj(world);
             SimpleVector sv = new SimpleVector();
@@ -247,20 +215,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         }
     }
 
+    //Gets the boolean master .
     public boolean getMaster(){
         return master;
     }
-    /**
-     * Sets the Touchpoint from camera for the Rotation .
-     */
+    //Sets the boolean state for the transition out.
     public void setTransitionOut(boolean state){ transitionOut = state; }
-    public void setTransitionLook(boolean state){
-        transitionLook = state;
-    }
-    public void setTransitionIn(boolean state){
-        transitionIn = state;
-    }
-
+    //Sets the boolean state for the transition look.
+    public void setTransitionLook(boolean state){ transitionLook = state; }
+    //Sets the boolean state for the transition in.
+    public void setTransitionIn(boolean state){ transitionIn = state; }
+    //Sets the Touchpoint from camera for the Rotation .
     public void setTouchPoint(PointF point){ touchPoint = point; }
+    //Sets the camera distance for zoom in or out .
     public void setCameraDistance(float d){camDistance = d;}
 }

@@ -42,8 +42,6 @@ public class MyGLSurfaceView extends GLSurfaceView {
         intouchHandle = new InputTouchHandler();
         mRenderer = new MyGLRenderer(context, spinnerListener, asyncTask);
         setRenderer(mRenderer);
-        // Render the view only when there is a change in the drawing data
-        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
     public boolean onTouchEvent(MotionEvent me) {
 
@@ -89,10 +87,4 @@ public class MyGLSurfaceView extends GLSurfaceView {
         }
         return true;
     }
-
-
-    protected boolean isFullscreenOpaque() {
-        return true;
-    }
-
 }

@@ -84,14 +84,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        //mGLView.onResume();
         Logger.log("OnStart");
     }
 
     @Override
     public void onBackPressed() {
-        //super.onDestroy();
-        //mGLView.onResume();
         super.onBackPressed();
         finish();
         System.exit(0);
