@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 
 /**
  * Created by Ahmed, Artjem, Arndt  on 11.06.2015.
+ * Some codes are taken from the tutorial
+ * http://www.41post.com/4588/programming/android-coding-a-loading-screen-part-1
  */
 public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
 
@@ -17,7 +19,7 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         acty = activity;
     }
 
-    //First call from the AsyncTask and create the progressDialog with the attributes
+    //First call from the AsyncTask and create the progressDialog with the attributes in seperate thread
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -41,8 +43,8 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         progressDialog.show();
     }
 
-
-    //the while loop for the counter
+    //The code to be executed in a background thread.
+    //The counter will be update by the PlanetManager and onDrawFrame.
     @Override
     protected Void doInBackground(Void... arg0) {
         while(counter <= 10)
@@ -52,13 +54,13 @@ public class BackgroundSplashTask extends AsyncTask<Void, Integer, Void> {
         return null;
     }
 
-    //sets the attribute for the Dialog
+    //sets the attribute for the Dialog and update the progress
     @Override
     protected void onProgressUpdate(Integer... arg0){
         progressDialog.setProgress(arg0[0]);
     }
 
-    //Last call from the AsyncTask do nothing
+    //Last call from the AsyncTask
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);

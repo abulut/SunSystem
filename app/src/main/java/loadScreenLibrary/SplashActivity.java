@@ -10,6 +10,8 @@ import com.example.ahmed.planet.R;
 
 /**
  * Created by Ahmed, Artjem, Arndt on 11.06.2015.
+ * Some codes are taken from the tutorial
+ * http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
  */
 public class SplashActivity extends Activity{
     // Splash screen timer
