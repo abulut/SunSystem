@@ -103,7 +103,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             sunlight.setIntensity(127, 127, 127);
             sunlight.setPosition(SimpleVector.create(0, 0, 0));
             world.setAmbientLight(30, 30, 30);
-            world.setClippingPlanes(0,5000000);
+            world.setClippingPlanes(0, 5000000);
 
 
             //load texture for the background/skyline
@@ -163,6 +163,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 //Next the camera swings from the current planet to the new
             } else if(transitionLook){
                 CamerObj.planetChangeLook(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()), this);
+                CamerObj.setCameraDistance(camDistance + pm.getPlanetDiamByIndex(sl.getSpinnerItemID()));
                 //Next the camera moves toward the new planet
             } else if(transitionIn){
                 CamerObj.planetChangeIn(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()), this);
