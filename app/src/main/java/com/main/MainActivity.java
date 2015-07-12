@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null){
 
+            //Used to display the loading bar
             asyncTask = new BackgroundSplashTask(this);
             asyncTask.execute();
 
@@ -47,14 +48,16 @@ public class MainActivity extends ActionBarActivity {
             Logger.log("TEST");
             mGLView = new MyGLSurfaceView(this, spinnerListener, asyncTask);
 
+            //MyGLSurfaceView is added to a RelativeLayout
             RelativeLayout rl = new RelativeLayout(this);
             rl.addView(mGLView);
 
+            //UI is inflated from .xml and added to the RelativeLayout on top of the MyGLSurfaceView
             LayoutInflater uiInflater = LayoutInflater.from(this);
             View uiView = uiInflater.inflate(R.layout.activity_main, null, false);
 
             rl.addView(uiView);
-
+            //The combined views are set as contentview
             setContentView(rl);
 
             Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
@@ -116,14 +119,17 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    //Function is called when the info-button is pressed
     public void planetInfoFragment (View view) {
         FragmentManager FM = getFragmentManager();
         FragmentTransaction FT = FM.beginTransaction();
+        //If to check if fragment is already displayed, if so the fragment is dismissed
         DisplayInfoFragment DIF = (DisplayInfoFragment) FM.findFragmentByTag("dif");
         if (DIF == null) {
 
             String planet = spinnerListener.getSpinnerItemName().toString();
             DIF = new DisplayInfoFragment();
+            //Bundle that is given to DisplayInfoFragment class with currently selected planet
             Bundle bundle = new Bundle();
             bundle.putString("planet", planet);
             DIF.setArguments(bundle);

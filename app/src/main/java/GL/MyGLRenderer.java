@@ -55,7 +55,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private float camDistance;
 
-
     private Object3D space = null;
     private CamerObj cam = null;
     private int fps = 0;
@@ -69,6 +68,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private BackgroundSplashTask asyncTask;
 
+    //Booleans used to transition the camera when the planet is changed
     private boolean planetChanged;
     private boolean transitionOut;
     private boolean transitionLook;
@@ -148,24 +148,29 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 gl) {
-
+        //planetChanged boolean is received to check which rendering path is taken
         planetChanged = sl.getPlanetChanged();
-
+        //2 ways to render, one where the camera is set to a planet, and one where the camera transitions
+        //from on planet to another when the planet is changed in the spinner
         if (!planetChanged){
             pm.onRender(); // rotates the Planets
             CamerObj.setCameraDistance(camDistance + pm.getPlanetDiamByIndex(sl.getSpinnerItemID())); //zooming in and out
-
             CamerObj.onRendering(touchPoint.x, touchPoint.y); //give the Input from the screen
             CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID())); // focus on Moving Planet
             CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID())); // set rotate center on moving planet
 
         } else if (planetChanged) {
+            //First the camera is moved away from the current planet
             if (transitionOut){
                 CamerObj.planetChangeOut(pm.getPlanetOBJFromIndex(sl.getFormerSpinnerItemID()), this);
+                //Next the camera swings from the current planet to the new
             } else if(transitionLook){
                 CamerObj.planetChangeLook(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()), this);
+                //Next the camera moves toward the new planet
             } else if(transitionIn){
                 CamerObj.planetChangeIn(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()), this);
+                //When all stages have been completed, the planetChanged boolean is changed, so that the normal
+                //rendering method is executed
             } else if (!transitionOut && !transitionLook && !transitionIn) {
                 transitionOut = true;
                 sl.setPlanetChangedFalse();

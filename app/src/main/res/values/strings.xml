@@ -4,6 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!--The spinner-listener gets its data from this array-->
     <string-array name="planets_array">
         <item>Sonne</item>
         <item>Merkur</item>
@@ -16,6 +17,7 @@
         <item>Neptun</item>
     </string-array>
 
+    <!--The infoFragment displays this as the planet info-->
     <string-array name="Sonne_info">
         <item>Name: Sonne</item>
         <item>Äquator: 1.392.684 km</item>

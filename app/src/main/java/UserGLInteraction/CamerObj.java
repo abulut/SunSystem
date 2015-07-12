@@ -50,6 +50,7 @@ public class CamerObj {
         distance = 5;
         cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
     }
+
     /*for the Camera Rotation around the planet */
     public static void onRendering(float x,float y){
 
