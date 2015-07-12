@@ -10,7 +10,8 @@
       "addColor":"255",
       "rotateSpeed":"0",
       "aphel":"0",
-      "perihel":"0"
+      "perihel":"0",
+      "dayRotation":"0.009"
     },
     {
       "name":"mercur",
@@ -22,7 +23,8 @@
       "addColor":"76",
       "rotateSpeed":"47.87",
       "aphel":"0.47",
-      "perihel":"0.31"
+      "perihel":"0.31",
+      "dayRotation":"-0.1407"
     },
     {
       "name":"venus",
@@ -34,7 +36,8 @@
       "addColor":"76",
       "rotateSpeed":"35.02",
       "aphel":"0.73",
-      "perihel":"0.72"
+      "perihel":"0.72",
+      "dayRotation":"0.5832"
     },
     {
       "name":"earth",
@@ -46,7 +49,8 @@
       "addColor":"76",
       "rotateSpeed":"29.78",
       "aphel":"1.02",
-      "perihel":"0.98"
+      "perihel":"0.98",
+      "dayRotation":"-0.024"
     },
     {
       "name":"mars",
@@ -58,7 +62,8 @@
       "addColor":"76",
       "rotateSpeed":"24.077",
       "aphel":"1.67",
-      "perihel":"1.38"
+      "perihel":"1.38",
+      "dayRotation":"-0.025"
     },
     {
       "name":"jupiter",
@@ -70,7 +75,8 @@
       "addColor":"76",
       "rotateSpeed":"13.07",
       "aphel":"5.45",
-      "perihel":"4.95"
+      "perihel":"4.95",
+      "dayRotation":"-0.01"
     },
     {
       "name":"saturn",
@@ -82,7 +88,8 @@
       "addColor":"76",
       "rotateSpeed":"9.69",
       "aphel":"10.09",
-      "perihel":"8.98"
+      "perihel":"8.98",
+      "dayRotation":"-0.01"
     },
     {
       "name":"uranus",
@@ -94,7 +101,8 @@
       "addColor":"76",
       "rotateSpeed":"6.81",
       "aphel":"20.09",
-      "perihel":"18.28"
+      "perihel":"18.28",
+      "dayRotation":"0.017"
     },
     {
       "name":"neptune",
@@ -106,7 +114,8 @@
       "addColor":"255",
       "rotateSpeed":"5.43",
       "aphel":"30.33",
-      "perihel":"29.79"
+      "perihel":"29.79",
+      "dayRotation":"-0.016"
     }
   ]
 }
