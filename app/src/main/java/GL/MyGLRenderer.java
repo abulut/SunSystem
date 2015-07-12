@@ -19,7 +19,6 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.opengl.GLSurfaceView;
 
-import UserGLInteraction.CamerObj;
 import com.example.ahmed.planet.R;
 import com.threed.jpct.FrameBuffer;
 import com.threed.jpct.Light;
@@ -40,33 +39,31 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import PlanetLibrary.PlanetManager;
+import UserGLInteraction.CamerObj;
 import UserInterfaceInteraction.SpinnerListener;
 import loadScreenLibrary.BackgroundSplashTask;
 /**
  * Created by Ahmed, Artjem, Arndt on 16.05.2015.
  */
 public class MyGLRenderer implements GLSurfaceView.Renderer {
-    private long time = System.currentTimeMillis();
-    private static Context myContext;
-    private boolean master = false;
-    private FrameBuffer fb = null;
-    private World world = null;
-    private RGBColor back = new RGBColor(255, 255, 255);
 
+    private static Context myContext;
+    private long time = System.currentTimeMillis();
+    private int fps = 0;
     private float camDistance;
+    private boolean master = false;
 
     private Object3D space = null;
     private CamerObj cam = null;
-    private int fps = 0;
-
+    private FrameBuffer fb = null;
+    private World world = null;
     private Light sunlight = null;
+
     private PointF touchPoint = null;
-
     private PlanetManager pm;
-
     private SpinnerListener sl;
-
     private BackgroundSplashTask asyncTask;
+    private RGBColor back = new RGBColor(255, 255, 255);
 
     //Booleans used to transition the camera when the planet is changed
     private boolean planetChanged;
