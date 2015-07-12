@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.ahmed.planet;
+package GL;
 
 import android.content.Context;
 import android.graphics.PointF;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
+
+import UserGLInteraction.InputTouchHandler;
 
 import UserInterfaceInteraction.SpinnerListener;
 import loadScreenLibrary.BackgroundSplashTask;

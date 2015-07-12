@@ -65,6 +65,7 @@ public class PlanetManager{
             planetInfo = new JSONObject(loadJSONFromAsset());
             planetsinfoArray = planetInfo.getJSONArray("Planets");
 
+            /*load JSON to ArrayLists */
             for(int i = 0; i < planetsinfoArray.length();i++){
                 String planetName = planetsinfoArray.getJSONObject(i).getString("name");
                 float posx = (float)planetsinfoArray.getJSONObject(i).getDouble("posx");
@@ -93,7 +94,7 @@ public class PlanetManager{
                 world.addObject(planet.getPlanetObj());
 
 
-
+                /*ask for Hemisphere for every Planet  */
                 if(hemitoADD == true) {
                     planet.addHemi(6);
                     planet.getHemiObj().addParent(planet.getPlanetObj());
@@ -105,7 +106,7 @@ public class PlanetManager{
                 hemispheres.add(i, planet.getHemiObj());
                 planets.add(i, planet.getPlanetObj());
 
-
+                /*Counter for the Loading */
                 counter+=1;
                 asycnTask.setCounter(counter);
 
@@ -119,12 +120,17 @@ public class PlanetManager{
 
     }
 
+    /* return the the Planet 3D Object from index */
     public Object3D getPlanetOBJFromIndex(int i){
         return planets.get(i);
     }
+    /* return the the Hemisphere 3D Object from index */
     public Object3D getHemispOBJFromIndex(int i) { return hemispheres.get(i); }
+    /* return the the Planet Diametre from index */
     public Float getPlanetDiamByIndex(int i){ return planetsDiam.get(i);}
 
+
+    /*for the Transformations on Renderer */
     public void onRender(){
 
 
@@ -163,6 +169,7 @@ public class PlanetManager{
 
 
 //thx @ http://stackoverflow.com/questions/24110619/android-catch-unhandled-exception-and-show-the-dialog
+/* Loads a JSON List */
     public String loadJSONFromAsset() {
         String json = null;
         try {

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.ahmed.planet.MainActivity;
+import com.main.MainActivity;
 import com.example.ahmed.planet.R;
 
 /**

@@ -1,10 +1,12 @@
-package com.example.ahmed.planet;
+package UserGLInteraction;
 
 import com.threed.jpct.Camera;
 import com.threed.jpct.Matrix;
 import com.threed.jpct.Object3D;
 import com.threed.jpct.SimpleVector;
 import com.threed.jpct.World;
+
+import GL.MyGLRenderer;
 
 /**
  * Created by Ahmed, Artjem, Arndt on 09.04.2015.

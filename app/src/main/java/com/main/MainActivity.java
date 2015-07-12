@@ -1,4 +1,4 @@
-package com.example.ahmed.planet;
+package com.main;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.example.ahmed.planet.R;
 import com.threed.jpct.Logger;
 
 import java.lang.reflect.Field;
 
+import GL.MyGLSurfaceView;
 import loadScreenLibrary.BackgroundSplashTask;
 import UserInterfaceInteraction.DisplayInfoFragment;
 import UserInterfaceInteraction.SpinnerListener;
