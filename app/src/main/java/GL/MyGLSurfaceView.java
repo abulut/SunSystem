@@ -61,7 +61,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 InputTouchHandler.actionPointerDown(me, pointerIndex);
                 break;
             }
-
+            // on Touch change
             case MotionEvent.ACTION_MOVE: {
                 touchPoint = InputTouchHandler.actionMove(me);
                 camDistance = InputTouchHandler.getCameraDistance();
@@ -71,11 +71,12 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 break;
             }
 
+            //First TouchPoint up
             case MotionEvent.ACTION_UP:{
                 InputTouchHandler.actionUp(me);
                 break;
             }
-
+            //Second TouchPointer up
             case MotionEvent.ACTION_POINTER_UP:{
                 InputTouchHandler.actionPointerUp(me, pointerIndex);
                 break;
