@@ -49,7 +49,7 @@ public class CamerObj {
         distance = 5;
         cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
     }
-
+    /*for the Camera Rotation around the planet */
     public static void onRendering(float x,float y){
 
         if(x != xAxis){
@@ -222,18 +222,19 @@ public class CamerObj {
         }
     }
 
-
+    //set the center the camera rotate around
     public static void setRotateCenter(Object3D newRotateCenter){
         rotateCenter = newRotateCenter.getTransformedCenter();
     }
+    //set center the Camera Look at
     public static void focusonPlanet(Object3D planet){
         cam.lookAt(planet.getTransformedCenter());
     }
-
+    //set the distance between Camera and rotate Center
     public static void setCameraDistance(float newDistance){
         distance = newDistance;
     }
-
+    // set the Change Vector
     public static void setChangeVector(Object3D planet) {
         planetChangeVector.x = planet.getTransformedCenter().x;
         planetChangeVector.y = planet.getTransformedCenter().y;
