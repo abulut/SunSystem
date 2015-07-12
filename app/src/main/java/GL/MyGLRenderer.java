@@ -22,7 +22,6 @@ import android.opengl.GLSurfaceView;
 import UserGLInteraction.CamerObj;
 import com.example.ahmed.planet.R;
 import com.threed.jpct.FrameBuffer;
-import com.threed.jpct.GLSLShader;
 import com.threed.jpct.Light;
 import com.threed.jpct.Loader;
 import com.threed.jpct.Logger;
@@ -56,19 +55,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private float camDistance;
 
+
     private Object3D space = null;
     private CamerObj cam = null;
     private int fps = 0;
 
     private Light sunlight = null;
     private PointF touchPoint = null;
-    private GLSLShader shader = null;
 
     private PlanetManager pm;
 
     private SpinnerListener sl;
 
-    private float rotate= 0.0f;
     private BackgroundSplashTask asyncTask;
 
     private boolean planetChanged;
@@ -97,42 +95,29 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Logger.log("Master ------------------------------------------------------------------- "+master);
         if (master == false) {
 
-            String vertex=Loader.loadTextFile(myContext.getResources().openRawResource(R.raw.vertexshader_offset));
-            String fragment=Loader.loadTextFile(myContext.getResources().openRawResource(R.raw.fragmentshader_offset));
-
-            shader=new GLSLShader(vertex, fragment);
-            shader.setStaticUniform("colorMap", 0);
-            shader.setStaticUniform("normalMap", 0);
-            shader.setStaticUniform("invRadius", 10.0005f);
-
-
-
-
 
             camDistance = 30;
             touchPoint = new PointF();
             world = new World();
 
+            //setting the Lights
             sunlight = new Light(world);
             sunlight.enable();
-
             sunlight.setIntensity(127, 127, 127);
             sunlight.setPosition(SimpleVector.create(0, 0, 0));
-
             world.setAmbientLight(30, 30, 30);
             world.setClippingPlanes(0,5000000);
 
 
-
+            //load texture for the background/skyline
             TextureManager.getInstance().addTexture("skyline", new Texture(BitmapHelper.rescale(BitmapHelper.convert(myContext.getResources().getDrawable(R.drawable.skyline)), 1024, 1024)));
 
-
+            //load Obj for the Skyline
             try{
                 space = Object3D.mergeAll(Loader.load3DS(myContext.getResources().getAssets().open("planet.3ds"), 400000));
                 space.setTexture("skyline");
                 space.invert();
                 space.rotateX(-(float) Math.PI / 2);
- //               space.setCulling(false);
 
                 space.strip();
                 space.setAdditionalColor(150,150,150);
@@ -144,23 +129,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             }
             world.addObject(space);
             //1:4 KM
-
+            // creates the Planets from JSON
             pm = new PlanetManager(myContext, world, asyncTask);
-            Logger.log("HEMISPHERE  ---------------------    "+pm.getHemispOBJFromIndex(3));
 
             cam = new CamerObj(world);
-            SimpleVector sv = new SimpleVector();
-            //sv.set(planet.getTransformedCenter());
-            sv.y = 100;
-            sv.z -= 100;
 
 
             MemoryHelper.compact();
 
-            /*if (master == null) {
-                Logger.log("Saving master Activity!");
-                master = HelloWorld.this;
-            }*/
             transitionOut = true;
             transitionIn = false;
             transitionLook = false;
@@ -176,15 +152,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         planetChanged = sl.getPlanetChanged();
 
         if (!planetChanged){
-            pm.onRender();
-            CamerObj.setCameraDistance(camDistance + pm.getPlanetDiamByIndex(sl.getSpinnerItemID()));// pm.getPlanetDiamByIndex(sl.getSpinnerItemID()
+            pm.onRender(); // rotates the Planets
+            CamerObj.setCameraDistance(camDistance + pm.getPlanetDiamByIndex(sl.getSpinnerItemID())); //zooming in and out
 
-            CamerObj.onRendering(touchPoint.x, touchPoint.y);
-            CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
-            CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID()));
-        //fixirt die Cam auf die Erden Hemisphere  nur zum test!!!
-        //CamerObj.focusonPlanet(pm.getHemispOBJFromIndex(3));
-        //CamerObj.setRotateCenter(pm.getHemispOBJFromIndex(3));
+            CamerObj.onRendering(touchPoint.x, touchPoint.y); //give the Input from the screen
+            CamerObj.focusonPlanet(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID())); // focus on Moving Planet
+            CamerObj.setRotateCenter(pm.getPlanetOBJFromIndex(sl.getSpinnerItemID())); // set rotate center on moving planet
 
         } else if (planetChanged) {
             if (transitionOut){
