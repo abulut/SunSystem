@@ -45,7 +45,7 @@ public class PlanetManager{
 
     ArrayList <Float> myOrbitAngles;
     ArrayList <Float> orbitSpeed;
-
+    ArrayList <Float> dayRotaion;
     public PlanetManager(Context ctx, World w, BackgroundSplashTask async) {
         planets = new ArrayList<>();
         hemispheres = new ArrayList<>();
@@ -57,6 +57,7 @@ public class PlanetManager{
         planetTranslation = new ArrayList<>();
         myOrbitAngles = new ArrayList<>();
         orbitSpeed = new ArrayList<>();
+        dayRotaion = new ArrayList<>();
         this.ctx = ctx;
         this.world = w;
         this.asycnTask = async;
@@ -75,11 +76,11 @@ public class PlanetManager{
                 float diam = planetsDiam.get(i) * 0.5f;
                 boolean hemitoADD = planetsinfoArray.getJSONObject(i).getBoolean("hemi");
                 int addColor = planetsinfoArray.getJSONObject(i).getInt("addColor");
-
                 orbitPos.put("aphel", (float) planetsinfoArray.getJSONObject(i).getDouble("aphel") / 100);
                 orbitPos.put("perihel", (float) planetsinfoArray.getJSONObject(i).getDouble("perihel") / 100);
                 orbitPosList.add(i, orbitPos);
                 orbitSpeed.add(i, (float) planetsinfoArray.getJSONObject(i).getDouble("rotateSpeed") / 10000);
+                dayRotaion.add(i, (float) planetsinfoArray.getJSONObject(i).getDouble("dayRotation"));
 
                 myOrbitAngles.add(i, 0f);
 
@@ -138,7 +139,7 @@ public class PlanetManager{
         for(int i = 0;i < planets.size();i++) {
 
 
-            planets.get(i).rotateY(-0.05f);
+           planets.get(i).rotateY(dayRotaion.get(i));
 
 
             myOrbitAngles.set(i,myOrbitAngles.get(i) + orbitSpeed.get(i) );
