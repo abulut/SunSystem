@@ -17,10 +17,11 @@ public class CamerObj {
     private static SimpleVector rotateVec;
     private static SimpleVector rotateCenter;
 
-    //Booleans and Vectors and Floats used to change the focused planet
+    //Booleans, Vectors and Floats used to change the focused planet
     private static float moveOut;
     private static float moveUp;
-    private static SimpleVector planetChangeVector;
+    private static SimpleVector planetChangeVector; //Invisible vector that the camera looks at, to
+                                                    //smoothly swing from one planet to the next
     private static SimpleVector camPosition;
     private static boolean checkVectors=true;
     private static boolean xVectorGreater;
@@ -94,8 +95,8 @@ public class CamerObj {
     // Move the camera towards the new chosen planet
     public static void planetChangeIn(Object3D currentPlanet, MyGLRenderer mGLR) {
         cam.lookAt(currentPlanet.getTransformedCenter());
+        //First checks if the coordinates of the camera have to be increased or decreased, to match those of the planet
         if (checkVectors) {
-
             setRotateCenter(currentPlanet);
             cam.getPosition(camPosition);
             rotateVec.x = (distance * -(float) Math.sin(xAxis * ((float) Math.PI / 180)) * (float) Math.cos((yAxis) * ((float) Math.PI / 180))) + rotateCenter.x;
@@ -119,6 +120,7 @@ public class CamerObj {
             }
             checkVectors = false;
 
+            //Changes coordinates until those of the planet are roughly met
         } else if (!checkVectors) {
             if(xVectorGreater && camPosition.x < rotateVec.x) {
                 camPosition.x += moveSpeed;
@@ -163,17 +165,13 @@ public class CamerObj {
     // Swing the direction of the camera from the old planet to the new
     public static void planetChangeLook(Object3D newPlanet, MyGLRenderer mGLR) {
         cam.lookAt(planetChangeVector);
+        //First checks if the coordinates of the focused point have to be increased or decreased, to match those of the planet
         if (checkVectors) {
             if(planetChangeVector.x < newPlanet.getTransformedCenter().x) {
                 xVectorGreater = true;
             } else if(planetChangeVector.x >= newPlanet.getTransformedCenter().x) {
                 xVectorGreater = false;
             }
-//            if(planetChangeVector.y < newPlanet.getTransformedCenter().y) {
-//                yVectorGreater = true;
-//            } else if(planetChangeVector.y >= newPlanet.getTransformedCenter().y) {
-//                yVectorGreater = false;
-//            }
             if(planetChangeVector.z < newPlanet.getTransformedCenter().z) {
                 zVectorGreater = true;
             } else if(planetChangeVector.z >= newPlanet.getTransformedCenter().z) {
@@ -181,6 +179,7 @@ public class CamerObj {
             }
             checkVectors = false;
 
+            //Changes coordinates until those of the planet are roughly met
         } else if (!checkVectors) {
             if(xVectorGreater && planetChangeVector.x < newPlanet.getTransformedCenter().x) {
                 planetChangeVector.x += lookSpeed;
@@ -192,18 +191,6 @@ public class CamerObj {
             } else if(!xVectorGreater && planetChangeVector.x <= newPlanet.getTransformedCenter().x){
                 planetChangeVector.x = newPlanet.getTransformedCenter().x;
             }
-
-//            if(yVectorGreater && planetChangeVector.y < newPlanet.getTransformedCenter().y) {
-//                planetChangeVector.y += lookSpeed;
-//            } else if(yVectorGreater && planetChangeVector.y >= newPlanet.getTransformedCenter().y){
-//                planetChangeVector.y = newPlanet.getTransformedCenter().y;
-//            }
-//            if(!yVectorGreater && planetChangeVector.y > newPlanet.getTransformedCenter().y) {
-//                planetChangeVector.y -= lookSpeed;
-//            } else if(!yVectorGreater && planetChangeVector.y <= newPlanet.getTransformedCenter().y){
-//                planetChangeVector.y = newPlanet.getTransformedCenter().y;
-//            }
-
             if(zVectorGreater && planetChangeVector.z < newPlanet.getTransformedCenter().z) {
                 planetChangeVector.z += lookSpeed;
             } else if(zVectorGreater && planetChangeVector.z >= newPlanet.getTransformedCenter().z){
