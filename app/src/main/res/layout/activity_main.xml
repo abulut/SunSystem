@@ -1,3 +1,4 @@
+<!--UI layout for the App-->
 <FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -11,6 +12,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         tools:context=".MainActivity">
+            <!--Spinner that shows the current planet and opens a list with the available planets when touched-->
             <Spinner
                 android:id="@+id/planet_spinner"
                 android:layout_width="85dp"
@@ -19,6 +21,7 @@
                 android:background="@drawable/roundcorners"
                 android:alpha="0.70"
                 />
+            <!--Custom shaped button that opens and closes the fragment-->
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="45dp"
@@ -31,6 +34,7 @@
                 android:onClick="planetInfoFragment"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true" />
+            <!--The fragment with the planet information is inflated into this-->
             <RelativeLayout
                 android:id="@+id/frInfo_id"
                 android:layout_width="match_parent"

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Defines the custom info_button in its to stages, pressed and unpressed-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/custom_shape_pressed"
         android:state_pressed="true"/>
