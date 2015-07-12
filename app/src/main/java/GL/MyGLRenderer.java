@@ -186,6 +186,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             time = System.currentTimeMillis();
         }
 
+        //Check the counter is 9, then update the counter and dismiss the progressdialog
         if(asyncTask.getCounter() == 9){
             asyncTask.setCounter(asyncTask.getCounter() + 1);
             asyncTask.setProgressDialogHidden();
