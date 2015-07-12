@@ -33,7 +33,6 @@ public class InputTouchHandler {
     }
     //First TouchPoint up
     public static void actionUp(MotionEvent me){
-
         touchPointList.remove(0);
     }
     //Second TouchPointer
@@ -85,19 +84,16 @@ public class InputTouchHandler {
         return new PointF(xd/10f,yd/100f);
 
     }
-    //function to calculate the distance between two points
+    //function to calculate the di
     private static float calcDistance(float x1, float y1, float x2, float y2){
         float d = ((float) Math.sqrt((float) Math.pow((x2 - x1), 2) + (float) Math.pow((y2 - y1), 2)));
 
         return d;
     }
-    //set the Max and the Min Zoom
     public static void setMaxMinZoom(float nMax, float nMin){
         MAX_ZOOM = nMax;
         MIN_ZOOM = nMin;
     }
-
-    //get the Camera distance
     public static float getCameraDistance(){
         return distance;
     }
