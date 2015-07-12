@@ -26,31 +26,32 @@ public class InputTouchHandler {
         MIN_ZOOM = 23f;
     }
 
-
+    // First TouchPoint
     public static void actionDown(MotionEvent me){
-
 
         touchPointList.add(0, new PointF(me.getX(0), me.getY(0)));
     }
-
+    //First TouchPoint up
     public static void actionUp(MotionEvent me){
+
         touchPointList.remove(0);
     }
-
+    //Second TouchPointer
     public static void actionPointerDown(MotionEvent me, int pointerIndex){
 
         touchPointList.add(pointerIndex, new PointF(me.getX(pointerIndex), me.getY(pointerIndex)));
         tempDistanc = calcDistance(touchPointList.get(0).x , touchPointList.get(0).y , touchPointList.get(1).x , touchPointList.get(1).y);
     }
-
+    //Second TouchPointer up
     public static void actionPointerUp(MotionEvent me, int pointerIndex){
         touchPointList.remove(pointerIndex);
     }
 
+    // on Touch change
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static PointF actionMove(MotionEvent me){
 
-
+        //set the First touchpoint
         float xd = (me.getX() - touchPointList.get(0).x);
         float yd = (me.getY() - touchPointList.get(0).y);
 
@@ -60,30 +61,21 @@ public class InputTouchHandler {
 
         if(touchPointList.size() == 2) {
 
-
-
+            //set the second touchpoint
             touchPointList.get(1).x = me.getX(1);
             touchPointList.get(1).y = me.getY(1);
 
-
+            //calculate new distance deppent on first and second touchpoint position
             float distancDelta = (calcDistance(touchPointList.get(0).x , touchPointList.get(0).y , touchPointList.get(1).x , touchPointList.get(1).y) - tempDistanc)/100;
 
             if(distancDelta < 0 && distance <= MAX_ZOOM){
-                //wird kleiner Zoom Out
+                //Zoom Out
                 distance = Math.max(distance - distancDelta,MIN_ZOOM);
             }else if(distancDelta > 0 && distance >= MIN_ZOOM ){
-                // wird groesser Zoom In
+                // Zoom In
                 distance = Math.min(distance - distancDelta,MAX_ZOOM);
             }
-/*
-            if(distance < MAX_ZOOM && distance > MIN_ZOOM ){
-                distance -= distancDelta;
-            }else if(distance >= MAX_ZOOM){
-                distance = MAX_ZOOM;
-            }else if(distance <= MIN_ZOOM){
-                distance = MIN_ZOOM;
-            }
-*/
+
             return new PointF(0,0);
 
 
@@ -93,15 +85,19 @@ public class InputTouchHandler {
         return new PointF(xd/10f,yd/100f);
 
     }
+    //function to calculate the distance between two points
     private static float calcDistance(float x1, float y1, float x2, float y2){
         float d = ((float) Math.sqrt((float) Math.pow((x2 - x1), 2) + (float) Math.pow((y2 - y1), 2)));
 
         return d;
     }
+    //set the Max and the Min Zoom
     public static void setMaxMinZoom(float nMax, float nMin){
         MAX_ZOOM = nMax;
         MIN_ZOOM = nMin;
     }
+
+    //get the Camera distance
     public static float getCameraDistance(){
         return distance;
     }
